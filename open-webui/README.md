@@ -14,8 +14,10 @@ Data lives at `/app/backend/data` on a 10 Gi PVC. SQLite requires one replica an
 
 Local identity Compose also enables `OFFLINE_MODE`, `HF_HUB_OFFLINE`, and disables version checks, matching the air-gap image behavior. This avoids external model downloads during startup; document embeddings require a model already present in the cache or an approved internal embedding service. An init process handles child processes during local container shutdown.
 
-Authorization: `openweb-users` → user; `openwebui-admins` → admin. Administrator membership wins if both are present. Users in neither group are denied a new SSO login, provided no other direct or inherited permitted role has been granted. Existing sessions require separate revocation for urgent access removal.
+Authorization: `openwebui-users` → user; `openwebui-admins` → admin. Administrator membership wins if both are present. Users in neither group are denied a new SSO login, provided no other direct or inherited permitted role has been granted. Existing sessions require separate revocation for urgent access removal.
 
 ## Illustrated configuration runbook
 
 See the [configuration guide](../docs/CONFIGURATION-GUIDE.md#7-open-webui-authentication-configuration) for live screenshots, exact settings, source ownership and operating procedures. An [offline HTML edition](../docs/CONFIGURATION-GUIDE.html) is included.
+
+New Keycloak identities automatically join the default `openwebui-users` group on provisioning, including first brokered SSO login. Administrators can manage later access through group membership; the default is not reapplied to existing users on each login.

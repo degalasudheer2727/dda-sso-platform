@@ -16,7 +16,7 @@ def pick(obj,keys):return {k:obj[k] for k in keys.split() if k in obj}
 r=get('');client=get('/clients?clientId=open-webui')[0];broker=get('/identity-provider/instances/dex')
 groups=[]
 for g in get('/groups'):
- if g['name'] in ['openweb-users','openwebui-admins']:
+ if g['name'] in ['openwebui-users','openwebui-admins']:
   groups.append({'name':g['name'],'roles':[v['name'] for v in get('/groups/'+g['id']+'/role-mappings/realm')]})
 realm=pick(r,'realm displayName enabled sslRequired registrationAllowed resetPasswordAllowed loginWithEmailAllowed duplicateEmailsAllowed bruteForceProtected failureFactor waitIncrementSeconds maxFailureWaitSeconds failureResetTimeSeconds accessTokenLifespan ssoSessionIdleTimeout ssoSessionMaxLifespan')
 client_ref=pick(client,'clientId name publicClient standardFlowEnabled directAccessGrantsEnabled implicitFlowEnabled serviceAccountsEnabled redirectUris webOrigins baseUrl rootUrl defaultClientScopes optionalClientScopes frontchannelLogout')
@@ -37,7 +37,7 @@ dex=json.loads((root/'.runtime/dex/config.yaml').read_text())
 dex_ref=pick(dex,'issuer storage web telemetry frontend oauth2 enablePasswordDB')
 dex_ref['identities']=[pick(u,'username email userID') for u in dex['staticPasswords']]
 dex_ref['clients']=[dict(pick(c,'id name redirectURIs'),secret='[private: DEX_CLIENT_SECRET]') for c in dex['staticClients']]
-report={'capturedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'scope':'Local Mac runtime; allowlisted values only. OpenShift reference is separate.','keycloak':{'realm':realm,'broker':broker_ref,'client':client_ref,'groups':groups,'firstBrokerFlow':flow_ref},'openWebUI':{'environment':web,'uiNote':'Persisted User Access defaults can differ from DEFAULT_USER_ROLE. OAuth settings are environment-managed.'},'dex':dex_ref}
+report={'capturedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'scope':'Local Mac runtime; allowlisted values only. OpenShift reference is separate.','keycloak':{'realm':realm,'broker':broker_ref,'client':client_ref,'groups':groups,'defaultGroups':[g['name'] for g in get('/default-groups')],'firstBrokerFlow':flow_ref},'openWebUI':{'environment':web,'uiNote':'Persisted User Access defaults can differ from DEFAULT_USER_ROLE. OAuth settings are environment-managed.'},'dex':dex_ref}
 out=root/'docs/configuration';out.mkdir(parents=True,exist_ok=True)
 (out/'local-effective-config.json').write_text(json.dumps(report,indent=2)+'\n')
 print('Exported allowlisted local configuration; credentials represented by private references.')

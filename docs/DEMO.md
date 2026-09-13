@@ -37,4 +37,6 @@ The five demo users can enter `testuser01`–`testuser05` or their `@dda.test` e
 
 ## Demonstrate group-based permissions
 
-Show `dda → Groups` in Keycloak: the five personas belong to `openweb-users`, and the dedicated SSO administrator belongs to `openwebui-admins`. Add a persona to `openwebui-admins`, sign out and back into WebUI, and show the Admin Panel. Remove that membership while keeping `openweb-users`, sign in again, and show normal user access. Restore the persona's original membership after the demo. The automated local test is `python3 scripts/verify-group-inheritance.py`.
+Show `dda → Groups` in Keycloak: the five personas belong to `openwebui-users`, and the dedicated SSO administrator belongs to `openwebui-admins`. Add a persona to `openwebui-admins`, sign out and back into WebUI, and show the Admin Panel. Remove that membership while keeping `openwebui-users`, sign in again, and show normal user access. Restore the persona's original membership after the demo. The automated local test is `python3 scripts/verify-group-inheritance.py`.
+
+New Keycloak identities automatically join the default `openwebui-users` group on provisioning, including first brokered SSO login. Administrators can manage later access through group membership; the default is not reapplied to existing users on each login.

@@ -49,17 +49,13 @@ for name in ['webui-user','webui-admin']:
   if e.code!=404: raise
   call(b+'/roles','POST',{'name':name})
 # Authorization comes from groups, not realm-wide defaults or fixture direct roles.
-groups={g['name']:g for g in call(b+'/groups')}
-for spec in r['groups']:
- if spec['name'] not in groups:
-  call(b+'/groups','POST',{'name':spec['name']})
-  groups={g['name']:g for g in call(b+'/groups')}
- call(b+'/groups/'+groups[spec['name']]['id']+'/role-mappings/realm','POST',[call(b+'/roles/'+name) for name in spec['realmRoles']])
+from keycloak_groups import reconcile_groups
+groups=reconcile_groups(call,b,r['groups'])
 for fixture in s['users']+([s['admin']] if s.get('admin') else []):
  found=call(b+'/users?email='+urllib.parse.quote(fixture['email'])+'&exact=true')
  if found:
   uid=found[0]['id']
-  group='openwebui-admins' if fixture.get('username')=='admin' else 'openweb-users'
+  group='openwebui-admins' if fixture.get('username')=='admin' else 'openwebui-users'
   # Seed a group only on migration. Preserve administrators' later membership decisions.
   memberships=call(b+'/users/'+uid+'/groups')
   direct=call(b+'/users/'+uid+'/role-mappings/realm')
@@ -71,7 +67,7 @@ for fixture in s['users']+([s['admin']] if s.get('admin') else []):
 default=call(b)['defaultRole']['name']
 call(b+'/roles/'+default+'/composites','DELETE',[call(b+'/roles/webui-user'),call(b+'/roles/webui-admin')])
 (root/'.runtime/secrets.json').write_text(json.dumps(s,indent=2)+'\n')
-print('Reconciled openweb-users and openwebui-admins group role inheritance.')
+print('Reconciled openwebui-users and openwebui-admins group role inheritance.')
 client=call(b+'/clients?clientId=open-webui')[0]
 mapper=r['clients'][0]['protocolMappers'][0]
 existing=call(b+'/clients/'+client['id']+'/protocol-mappers/models')

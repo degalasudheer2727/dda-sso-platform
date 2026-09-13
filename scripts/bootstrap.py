@@ -26,7 +26,8 @@ def realm(dex_url, webui_url, s):
           'jwksUrl':dex_url+'/keys','issuer':dex_url,'validateSignature':'true','useJwksUrl':'true',
           'defaultScope':'openid email profile','syncMode':'FORCE','pkceEnabled':'true','pkceMethod':'S256'}}],
       'roles':{'realm':[{'name':'webui-user'},{'name':'webui-admin'}]},
-      'groups':[{'name':'openweb-users','realmRoles':['webui-user']},
+      'defaultGroups':['/openwebui-users'],
+      'groups':[{'name':'openwebui-users','realmRoles':['webui-user']},
         {'name':'openwebui-admins','realmRoles':['webui-user','webui-admin']}],
       'clients':[{'clientId':'open-webui','name':'DDA Open WebUI','enabled':True,'protocol':'openid-connect',
         'publicClient':False,'secret':s['WEBUI_CLIENT_SECRET'],'standardFlowEnabled':True,
@@ -50,7 +51,7 @@ def realm(dex_url, webui_url, s):
       subject=base64.urlsafe_b64encode(bytes([10,len(uid)])+uid+b'\x12\x05local').decode().rstrip('=')
       result.setdefault('users',[]).append({'username':u['email'],'email':u['email'],
         'firstName':u['firstName'],'lastName':u['lastName'],'enabled':True,'emailVerified':True,
-        'groups':['/openweb-users'],'federatedIdentities':[{'identityProvider':'dex','userId':subject,'userName':u['name']}]})
+        'groups':['/openwebui-users'],'federatedIdentities':[{'identityProvider':'dex','userId':subject,'userName':u['name']}]})
     return result
 
 def dex_config(issuer, kc_url, s):

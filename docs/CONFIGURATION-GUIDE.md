@@ -187,12 +187,24 @@ Navigate to **dda → Groups**.
 
 | Keycloak group | Roles assigned to the group | Effective Open WebUI role |
 |---|---|---|
-| `openweb-users` | `webui-user` | User |
+| `openwebui-users` | `webui-user` | User |
 | `openwebui-admins` | `webui-user`, `webui-admin` | Administrator |
+
+### Automatic enrollment on first sign-in
+
+Navigate to **dda → Realm settings → User registration → Default groups**. The configured default group is **openwebui-users**.
+
+![Keycloak default group for newly provisioned users](screenshots/19-keycloak-default-group.png)
+
+When Keycloak creates an identity on its first brokered sign-in, it automatically adds the user to `openwebui-users`. The inherited `webui-user` role lets the user enter Open WebUI without a separate group-assignment step. The same default applies to newly created Keycloak users. `openwebui-admins` is not a default group.
+
+This is an enrollment default, not a rule that overwrites membership on every login. A Keycloak administrator can later add `openwebui-admins`, retain only `openwebui-users`, or remove both. Subsequent sign-ins do not re-add a membership the administrator removed. The earlier group was renamed in place, preserving its ID and existing memberships.
+
+The [default-enrollment check](../scripts/verify-default-group.py) verifies new-user membership and inherited roles without explicitly assigning a group. Its [result](../verification/default-group-results.json) records whether an unused fixture was available for an additional first-broker browser test.
 
 The five demo identities are seeded into the user group; the dedicated SSO administrator is seeded into the administrator group. Live membership may change after bootstrap. The reconciliation script migrates the original demo direct grants once and preserves later membership decisions.
 
-Navigate to **Groups → openweb-users → Role mapping**.
+Navigate to **Groups → openwebui-users → Role mapping**.
 
 ![Standard group role mapping](screenshots/15-keycloak-user-group-roles.png)
 
@@ -200,14 +212,14 @@ Navigate to **Groups → openwebui-admins → Role mapping**.
 
 ![Administrator group role mapping](screenshots/16-keycloak-admin-group-roles.png)
 
-“Inherited: False” in these group screens means the role is assigned directly to the group. Users who join that group inherit the role. Ordinary users should not carry direct `webui-admin` grants. The realm-wide default role no longer grants `webui-user`, so membership is meaningful.
+“Inherited: False” in these group screens means the role is assigned directly to the group. Users who join that group inherit the role. Ordinary users should not carry direct `webui-admin` grants. The realm-wide default role does not grant `webui-user`; the default group supplies it. Removing group membership can therefore remove application access.
 
 ![Administrator group membership example](screenshots/17-keycloak-admin-group-members.png)
 
 ### Add or promote a user
 
 1. Open **dda → Users**, search for the approved identity, and select it.
-2. Open **Groups → Join Group** and choose `openweb-users` for ordinary access or `openwebui-admins` for administrator access.
+2. Open **Groups → Join Group** and choose `openwebui-users` for ordinary access or `openwebui-admins` for administrator access.
 3. Have the user sign out of Open WebUI and select **Continue with DDA SSO** again.
 4. Verify the expected WebUI role and the presence or absence of the Admin Panel.
 
@@ -215,7 +227,7 @@ Membership in both groups grants administrator access. Membership in `openwebui-
 
 ### Demote or remove access
 
-1. Remove `openwebui-admins`; retain `openweb-users` for a demotion to ordinary user.
+1. Remove `openwebui-admins`; retain `openwebui-users` for a demotion to ordinary user.
 2. Remove both memberships to deny a new SSO login, provided no other direct or inherited allowed role remains.
 3. Verify a new sign-in. Existing sessions require separate revocation for immediate removal.
 
@@ -342,6 +354,7 @@ python3 scripts/onboard-test-users.py --username
 python3 scripts/onboard-test-users.py
 python3 scripts/onboard-test-users.py --admin --username
 python3 scripts/check-login-rejection.py
+python3 scripts/verify-default-group.py
 python3 scripts/verify-local.py
 # Local demo only: temporarily changes testuser05 membership and restores it.
 python3 scripts/verify-group-inheritance.py

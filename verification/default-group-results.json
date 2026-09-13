@@ -1,0 +1,7 @@
+{
+  "defaultGroup": "openwebui-users",
+  "legacyGroupAbsent": true,
+  "newUserInheritedRole": "webui-user",
+  "temporaryProbeRemoved": true,
+  "firstBrokerFixture": null
+}

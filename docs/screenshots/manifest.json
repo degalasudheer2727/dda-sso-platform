@@ -1,8 +1,12 @@
 {
   "capturedDate": "2026-09-14",
   "environment": "Local Mac Docker lab",
-  "sourceRevision": "a8ce9ce",
-  "review": "Secret inputs masked before capture; OCR checked against known local credentials and token patterns; visual review of key configuration pages; user-list screenshot restricted to synthetic identities.",
+  "configurationSources": [
+    "scripts/bootstrap.py",
+    "scripts/keycloak_groups.py",
+    "compose.identity.yaml"
+  ],
+  "review": "Secret inputs masked before capture; OCR checked against known local credentials, token patterns, personal emails and the legacy group name. Key pages visually reviewed.",
   "files": [
     {
       "file": "01-keycloak-realm.png",
@@ -82,22 +86,27 @@
     {
       "file": "14-keycloak-groups.png",
       "caption": "Keycloak authorization groups",
-      "sha256": "666746b5badf0d6381eabde7156419a1acb4fc1a6fc009face7a8eabf6ab9b75"
+      "sha256": "1457a3ad97fa6a283cd1c6bc727841edbf2f9042ca5efd8f5966e49155938503"
+    },
+    {
+      "file": "19-keycloak-default-group.png",
+      "caption": "Keycloak default group for newly provisioned users",
+      "sha256": "53666166fde20ea8fbe2fbf2ea8bda717c0f7fc825923081f16570d503155e5f"
     },
     {
       "file": "15-keycloak-user-group-roles.png",
       "caption": "Standard group role mapping",
-      "sha256": "9a7cc1e7f78e1a370f50186a662083d2e29226f2fb5d7eb0f5513383d5d8eb2e"
+      "sha256": "faaf481ce6b796143f258e43c109c8bbb9f388e2b3436eba5609add04d045fde"
     },
     {
       "file": "16-keycloak-admin-group-roles.png",
       "caption": "Administrator group role mapping",
-      "sha256": "9d9852dc1da7bae0ee65803ff06f00a7d0eaa9cc0332c8ea7bffb799413c856c"
+      "sha256": "3c788733df9fd2fc83f0e43936648a4f81b30057f73d5732533a855d897761bd"
     },
     {
       "file": "17-keycloak-admin-group-members.png",
       "caption": "Administrator group membership example",
-      "sha256": "cba0e8acce55af543e3153f38c4713fa68abd5ef6dbe6eee4e27e01b4316ed3b"
+      "sha256": "82bb93be1fad79f84695483d00bce90ddb7c6f8300fe8a5475671d8ab91bc429"
     },
     {
       "file": "20-webui-authentication.png",

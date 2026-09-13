@@ -38,7 +38,7 @@ scripts/local.sh ps
 
 Bootstrap generates secrets only once and pre-provisions the dedicated federated administrator in a fresh Keycloak realm. Fresh Web UI databases also receive a separate break-glass administrator before any SSO user can sign in. Running it again preserves credentials. **Use `scripts/local.sh` for this identity stack**, so both Compose files and its private environment are loaded. Running plain `docker compose up` only loads the earlier Web UI/Headroom configuration.
 
-Keycloak imports the realm on the first database boot. An existing realm is not overwritten on restart. See `keycloak/README.md` for change management. Existing Open WebUI accounts/data are retained; the five demo identities inherit ordinary access from the Keycloak `openweb-users` group; `openwebui-admins` grants WebUI administrator access.
+Keycloak imports the realm on the first database boot. An existing realm is not overwritten on restart. See `keycloak/README.md` for change management. Existing Open WebUI accounts/data are retained; the five demo identities inherit ordinary access from the Keycloak `openwebui-users` group; `openwebui-admins` grants WebUI administrator access.
 
 ## Repository layout
 
@@ -82,3 +82,5 @@ Manage group membership in Keycloak **dda → Users → user → Groups**. Permi
 ## Illustrated administration guide
 
 Read the [screenshot-backed configuration guide](docs/CONFIGURATION-GUIDE.md), or open the [offline HTML edition](docs/CONFIGURATION-GUIDE.html). It covers Keycloak, Open WebUI, Dex, group inheritance, session behavior, troubleshooting and OpenShift handoff. Exact non-secret runtime values are in [local-effective-config.json](docs/configuration/local-effective-config.json).
+
+New Keycloak identities automatically join the default `openwebui-users` group on provisioning, including first brokered SSO login. Administrators can manage later access through group membership; the default is not reapplied to existing users on each login.

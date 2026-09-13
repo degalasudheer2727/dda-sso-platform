@@ -120,7 +120,7 @@ p.edge('s5','s6','Keycloak authorization code','purple','bottom','right',via=[(1
 p.edge('s6','s7','app session established','blue','left','right')
 p.box('dexclaims','AUTHORITATIVE PROFILE',['email: testuser01@dda.test','name: Alex Morgan','Stable subject: test identity ID','Admin: admin@dda.test','No client secret exposed to browser'],1655,945,470,245,'cyan','#EFFBFB')
 p.box('trust','TWO CONFIDENTIAL CLIENTS',['Dex client: keycloak-dda','Keycloak client: open-webui','Independent generated secrets','Strict issuer / signature validation','No password/direct grant on app client'],65,565,470,250,'amber','#FFF9ED')
-p.box('roles','EXPLICIT AUTHORIZATION',['openweb-users → webui-user → user','openwebui-admins → webui-admin → admin','Admin also: realm-management/realm-admin','Master admin remains separate','No email-based automatic account merge'],65,865,1000,235,'green','#F0FAF5')
+p.box('roles','EXPLICIT AUTHORIZATION',['openwebui-users (default) → webui-user → user','openwebui-admins → webui-admin → admin','Admin also: realm-management/realm-admin','Master admin remains separate','No email-based automatic account merge'],65,865,1000,235,'green','#F0FAF5')
 p.box('session','SESSION AND LOGOUT BOUNDARY',['Keycloak access token: 5 minutes • SSO idle: 30 minutes • SSO max: 8 hours','Ending the app / Keycloak session does not promise immediate revocation of every upstream session or issued JWT.','Enterprise logout, deprovisioning, MFA and expiry semantics must be validated with the actual upstream provider.'],65,1420,2060,205,'amber','#FFF9ED',18)
 p.svg()
 

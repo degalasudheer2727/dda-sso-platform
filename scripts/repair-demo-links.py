@@ -25,7 +25,7 @@ for u in s['users']:
  uid=u['id'].encode();subject=base64.urlsafe_b64encode(bytes([10,len(uid)])+uid+b'\x12\x05local').decode().rstrip('=')
  found=call('/admin/realms/dda/users?email='+urllib.parse.quote(u['email'])+'&exact=true')
  if not found:
-  call('/admin/realms/dda/users','POST',{'id':old,'username':u['email'],'email':u['email'],'emailVerified':True,'enabled':True,'firstName':u['firstName'],'lastName':u['lastName'],'groups':['/openweb-users'],'federatedIdentities':[{'identityProvider':'dex','userId':subject,'userName':u['name']}]})
+  call('/admin/realms/dda/users','POST',{'id':old,'username':u['email'],'email':u['email'],'emailVerified':True,'enabled':True,'firstName':u['firstName'],'lastName':u['lastName'],'groups':['/openwebui-users'],'federatedIdentities':[{'identityProvider':'dex','userId':subject,'userName':u['name']}]})
   found=call('/admin/realms/dda/users?email='+urllib.parse.quote(u['email'])+'&exact=true')
  assert len(found)==1
  kc=found[0];links=call('/admin/realms/dda/users/'+kc['id']+'/federated-identity')

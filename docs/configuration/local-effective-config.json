@@ -1,5 +1,5 @@
 {
-  "capturedAt": "2026-09-13T21:43:03.873305+00:00",
+  "capturedAt": "2026-09-13T22:05:27.740554+00:00",
   "scope": "Local Mac runtime; allowlisted values only. OpenShift reference is separate.",
   "keycloak": {
     "realm": {
@@ -95,18 +95,21 @@
     },
     "groups": [
       {
-        "name": "openweb-users",
-        "roles": [
-          "webui-user"
-        ]
-      },
-      {
         "name": "openwebui-admins",
         "roles": [
           "webui-admin",
           "webui-user"
         ]
+      },
+      {
+        "name": "openwebui-users",
+        "roles": [
+          "webui-user"
+        ]
       }
+    ],
+    "defaultGroups": [
+      "openwebui-users"
     ],
     "firstBrokerFlow": [
       {

@@ -11,10 +11,12 @@ Private local credentials are in `.runtime/ADMIN-ACCESS.md`; do not commit, scre
 | PostgreSQL | `postgres` | Internal `psql`/approved DBA tools, with generated superuser password; no public database port. Application uses the separate `keycloak` role. |
 | Headroom | No built-in user administration | Local loopback dashboard and Docker configuration. No fictitious admin account is added to a service without authentication support. |
 
-The ordinary identities inherit Keycloak `webui-user` from `openweb-users`. The dedicated SSO administrator inherits `webui-admin` from `openwebui-admins`; realm administration remains separately assigned. Dex cannot grant downstream administrator rights merely by changing an email string; administrator role assignment is explicit in Keycloak. In enterprise environments, restrict who can assign these roles and audit every change.
+The ordinary identities inherit Keycloak `webui-user` from `openwebui-users`. The dedicated SSO administrator inherits `webui-admin` from `openwebui-admins`; realm administration remains separately assigned. Dex cannot grant downstream administrator rights merely by changing an email string; administrator role assignment is explicit in Keycloak. In enterprise environments, restrict who can assign these roles and audit every change.
 
 Fresh OpenShift Web UI deployments seed a separate bootstrap administrator before allowing SSO, preventing the first test user from becoming admin. The production renderer also provisions the Keycloak master bootstrap administrator and PostgreSQL superuser credential. A real upstream enterprise administrator must be explicitly linked/assigned the appropriate Keycloak role; importing demo users is opt-in. The temporary bootstrap accounts must be replaced by named MFA-protected administrators after acceptance.
 
 The rendered demo realm pre-provisions the administrator using the stable local-connector subject verified against the pinned Dex version; no password is stored in Keycloak for that federated user. For the demo fixture, run `scripts/sync-keycloak.py` after the administrator's first SSO login to assign its explicit roles, then sign in again so a new token includes them. Restart import files do not update existing realms.
 
 Manage application permissions in **dda → Users → user → Groups**. Group membership is applied at the next SSO login; see `keycloak/README.md` for promotion, demotion and session-revocation behavior.
+
+New Keycloak identities automatically join the default `openwebui-users` group on provisioning, including first brokered SSO login. Administrators can manage later access through group membership; the default is not reapplied to existing users on each login.

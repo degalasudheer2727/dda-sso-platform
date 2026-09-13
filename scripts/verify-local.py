@@ -18,13 +18,13 @@ for u in s['users']:
  links=request('/admin/realms/dda/users/'+matches[0]['id']+'/federated-identity',token=token)
  assert any(x['identityProvider']=='dex' for x in links)
 groups={g['name']:g for g in request('/admin/realms/dda/groups',token=token)}
-for name,expected in [('openweb-users',{'webui-user'}),('openwebui-admins',{'webui-user','webui-admin'})]:
+for name,expected in [('openwebui-users',{'webui-user'}),('openwebui-admins',{'webui-user','webui-admin'})]:
  roles=request('/admin/realms/dda/groups/'+groups[name]['id']+'/role-mappings/realm',token=token)
  assert expected <= {r['name'] for r in roles}
 for fixture in s['users']+[s['admin']]:
  kc=next(u for u in users if u.get('email')==fixture['email'])
  memberships=request('/admin/realms/dda/users/'+kc['id']+'/groups',token=token)
- expected='openwebui-admins' if fixture['username']=='admin' else 'openweb-users'
+ expected='openwebui-admins' if fixture['username']=='admin' else 'openwebui-users'
  assert expected in {g['name'] for g in memberships}
  direct=request('/admin/realms/dda/users/'+kc['id']+'/role-mappings/realm',token=token)
  assert not {'webui-user','webui-admin'} & {r['name'] for r in direct}

@@ -14,7 +14,7 @@ def api(path,method='GET'):
 groups={g['name']:g['id'] for g in api('/groups')}
 uid=api('/users?email=testuser05%40dda.test&exact=true')[0]['id'];base='/users/'+uid+'/groups/'
 original={g['id'] for g in api('/users/'+uid+'/groups')}
-assert groups['openweb-users'] in original
+assert groups['openwebui-users'] in original
 assert not any(r['name'] in ['webui-user','webui-admin'] for r in api('/users/'+uid+'/role-mappings/realm'))
 def login(role=None,denied=False):
  cmd=[sys.executable,str(root/'scripts/onboard-test-users.py'),'--user','testuser05','--username']
@@ -27,7 +27,7 @@ def login(role=None,denied=False):
 try:
  api(base+groups['openwebui-admins'],'PUT');login('admin')
  api(base+groups['openwebui-admins'],'DELETE');login('user')
- api(base+groups['openweb-users'],'DELETE');login(denied=True)
+ api(base+groups['openwebui-users'],'DELETE');login(denied=True)
 finally:
  current={g['id'] for g in api('/users/'+uid+'/groups')}
  for gid in current-original: api(base+gid,'DELETE')
@@ -35,4 +35,4 @@ finally:
  login('user')
 print('PASS: group promotion, demotion, denial and original membership restored.')
 
-(root/'verification/group-results.json').write_text(json.dumps({'groups':['openweb-users','openwebui-admins'],'promotion':'passed','demotion':'passed','unassigned_login':'denied','original_membership':'restored','applied_at':'SSO login'},indent=2)+'\n')
+(root/'verification/group-results.json').write_text(json.dumps({'groups':['openwebui-users','openwebui-admins'],'promotion':'passed','demotion':'passed','unassigned_login':'denied','original_membership':'restored','applied_at':'SSO login'},indent=2)+'\n')

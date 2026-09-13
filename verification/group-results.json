@@ -1,6 +1,6 @@
 {
   "groups": [
-    "openweb-users",
+    "openwebui-users",
     "openwebui-admins"
   ],
   "promotion": "passed",
