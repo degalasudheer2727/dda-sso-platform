@@ -28,3 +28,7 @@ Keep Docker Desktop running. Start/check the stack with `scripts/local.sh up -d`
 - Inspect `openshift/reference/` and `docs/AIRGAP.md`, then the image archive under `.runtime/airgap/`.
 
 A successful login demonstrates identity integration. Select/configure a model provider separately to demonstrate AI chat. Closing a browser is not equivalent to revoking all server-side sessions; demonstrate your required logout and expiry behavior separately.
+
+## Local recorded preview
+
+The completed recording is `verification/user-sso-demo.webm` on the Mac; authenticated media are intentionally excluded from GitHub. To record another local demo, run `npm install --prefix .runtime/browser-tools ffmpeg-static` once on a connected machine, then `python3 scripts/record-demo.py`. The synthetic password input remains masked in the recording.
