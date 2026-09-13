@@ -1,0 +1,120 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2400" height="1720" viewBox="0 0 2400 1720">
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="context-stroke"/></marker></defs>
+<rect width="100%" height="100%" fill="#F4F7FC"/>
+<text x="55" y="72" font-family="Arial, Helvetica, sans-serif" font-size="32" fill="#172B4D" font-weight="700">03  |  Air-gapped OpenShift deployment reference</text>
+<text x="55" y="124" font-family="Arial, Helvetica, sans-serif" font-size="19" fill="#A15C00" font-weight="400">GENERATED REFERENCE — NOT DEPLOYED TO A CLUSTER  •  Replace registry, DNS domain, storage class and CA placeholders</text>
+<rect x="45" y="180" width="485" height="1435" rx="12" fill="#EAF0F9" stroke="#AFC0D4" stroke-width="2"/>
+<text x="63" y="211" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#AFC0D4" font-weight="700">CONNECTED BUILD / CONTROLLED TRANSFER</text>
+<rect x="70" y="260" width="435" height="245" rx="12" fill="#FFFFFF" stroke="#1764C0" stroke-width="2"/>
+<text x="88" y="291" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#1764C0" font-weight="700">APPROVED BUILD WORKSTATION</text>
+<text x="88" y="323" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Pinned Dex and PostgreSQL images</text>
+<text x="88" y="347" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Keycloak optimized production image</text>
+<text x="88" y="371" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Open WebUI arbitrary-UID derivative</text>
+<text x="88" y="395" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">No runtime pip / npm / Maven pulls</text>
+<text x="88" y="419" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Match target CPU architecture</text>
+<rect x="70" y="565" width="435" height="245" rx="12" fill="#FFFFFF" stroke="#18794E" stroke-width="2"/>
+<text x="88" y="596" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#18794E" font-weight="700">OFFLINE IMAGE BUNDLE</text>
+<text x="88" y="628" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">docker save → dda-images.tar</text>
+<text x="88" y="652" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Transfer archive + SHA256 checksum</text>
+<text x="88" y="676" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Transfer repository + oc / Podman</text>
+<text x="88" y="700" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Keep credentials out of image layers</text>
+<text x="88" y="724" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Scan / SBOM / sign final images</text>
+<rect x="70" y="875" width="435" height="205" rx="12" fill="#FFFFFF" stroke="#7146B8" stroke-width="2"/>
+<text x="88" y="906" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#7146B8" font-weight="700">INTERNAL REGISTRY</text>
+<text x="88" y="938" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">registry.&lt;enterprise&gt;/dda</text>
+<text x="88" y="962" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Import/tag/push with Podman</text>
+<text x="88" y="986" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Record destination manifest digests</text>
+<text x="88" y="1010" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Configure pull secret and registry CA</text>
+<rect x="70" y="1140" width="435" height="365" rx="12" fill="#FFF9ED" stroke="#A15C00" stroke-width="2"/>
+<text x="88" y="1171" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#A15C00" font-weight="700">PRODUCTION ACCEPTANCE GATES</text>
+<text x="88" y="1203" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Actual OpenShift version / SCC admission</text>
+<text x="88" y="1227" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">PVC provisioning and restore drill</text>
+<text x="88" y="1251" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">TLS trust + Route hairpin DNS</text>
+<text x="88" y="1275" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">NetworkPolicy / ingress topology</text>
+<text x="88" y="1299" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">HA design + load/failure tests</text>
+<text x="88" y="1323" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Real IdP MFA / user lifecycle</text>
+<text x="88" y="1347" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Approved internal LLM + RAG tests</text>
+<rect x="580" y="180" width="1760" height="1435" rx="12" fill="#EAF0F9" stroke="#AFC0D4" stroke-width="2"/>
+<text x="598" y="211" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#AFC0D4" font-weight="700">ENTERPRISE OPENSHIFT CLUSTER  •  namespace dda-sso  •  restricted SCC</text>
+<rect x="625" y="260" width="1665" height="175" rx="12" fill="#EDF4FF" stroke="#1764C0" stroke-width="2"/>
+<text x="643" y="291" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#1764C0" font-weight="700">HTTPS INGRESS ROUTES</text>
+<text x="643" y="323" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#172B4D" font-weight="400">webui.&lt;domain&gt;  •  keycloak.&lt;domain&gt;  •  dex.&lt;domain&gt;</text>
+<text x="643" y="348" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#172B4D" font-weight="400">Edge TLS termination; HTTP redirected to HTTPS</text>
+<text x="643" y="373" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#172B4D" font-weight="400">Trusted ingress CA in browsers and OIDC back channels</text>
+<text x="643" y="398" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="#172B4D" font-weight="400">Use re-encrypt Routes + pod certificates if full in-cluster TLS is required</text>
+<rect x="625" y="540" width="490" height="270" rx="12" fill="#FFFFFF" stroke="#1764C0" stroke-width="2"/>
+<text x="643" y="571" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#1764C0" font-weight="700">OPEN WEBUI DEPLOYMENT</text>
+<text x="643" y="603" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Derived v0.11.3 image</text>
+<text x="643" y="627" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Service port 8080</text>
+<text x="643" y="651" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">OAuth code + PKCE / role claims</text>
+<text x="643" y="675" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Direct Dex provider hint</text>
+<text x="643" y="699" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Offline downloads/version checks OFF</text>
+<text x="643" y="723" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Separate bootstrap admin Secret</text>
+<rect x="1210" y="540" width="490" height="270" rx="12" fill="#FFFFFF" stroke="#7146B8" stroke-width="2"/>
+<text x="1228" y="571" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#7146B8" font-weight="700">KEYCLOAK DEPLOYMENT</text>
+<text x="1228" y="603" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Optimized 26.7.3 image</text>
+<text x="1228" y="627" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">start --optimized --import-realm</text>
+<text x="1228" y="651" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Service 8080; management 9000</text>
+<text x="1228" y="675" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">KC_HOSTNAME=https://keycloak…</text>
+<text x="1228" y="699" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">xforwarded behind trusted router</text>
+<text x="1228" y="723" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Realm import only on first DB boot</text>
+<rect x="1795" y="540" width="490" height="270" rx="12" fill="#FFFFFF" stroke="#087E8B" stroke-width="2"/>
+<text x="1813" y="571" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#087E8B" font-weight="700">DEX DEPLOYMENT</text>
+<text x="1813" y="603" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Pinned v2.45.1 image</text>
+<text x="1813" y="627" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Service 5556; health 5558</text>
+<text x="1813" y="651" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">https://dex.&lt;domain&gt;/dex</text>
+<text x="1813" y="675" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Config mounted from a Secret</text>
+<text x="1813" y="699" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Demo profiles explicitly opt-in</text>
+<text x="1813" y="723" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Replace with enterprise connector</text>
+<rect x="625" y="935" width="490" height="155" rx="12" fill="#F0FAF5" stroke="#18794E" stroke-width="2"/>
+<text x="643" y="966" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#18794E" font-weight="700">WEB UI PVC</text>
+<text x="643" y="998" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">10 Gi RWO /app/backend/data</text>
+<text x="643" y="1022" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">SQLite + files → ONE replica</text>
+<text x="643" y="1046" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Recreate strategy</text>
+<rect x="1210" y="920" width="490" height="205" rx="12" fill="#F0FAF5" stroke="#18794E" stroke-width="2"/>
+<text x="1228" y="951" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#18794E" font-weight="700">POSTGRESQL DEPLOYMENT + PVC</text>
+<text x="1228" y="983" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">SCLorg PostgreSQL 16</text>
+<text x="1228" y="1007" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Internal Service 5432</text>
+<text x="1228" y="1031" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">10 Gi RWO /var/lib/pgsql/data</text>
+<text x="1228" y="1055" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">keycloak app role / postgres DBA</text>
+<rect x="1795" y="935" width="490" height="155" rx="12" fill="#F0FAF5" stroke="#18794E" stroke-width="2"/>
+<text x="1813" y="966" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#18794E" font-weight="700">DEX PVC</text>
+<text x="1813" y="998" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">1 Gi RWO /var/dex</text>
+<text x="1813" y="1022" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">SQLite signing/session state</text>
+<text x="1813" y="1046" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">ONE replica / Recreate</text>
+<rect x="625" y="1195" width="1010" height="290" rx="12" fill="#FFF9ED" stroke="#A15C00" stroke-width="2"/>
+<text x="643" y="1226" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#A15C00" font-weight="700">SECURITY &amp; NETWORK POLICIES</text>
+<text x="643" y="1258" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">No fixed UID, privileged mode, hostPath or anyuid SCC</text>
+<text x="643" y="1282" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">runAsNonRoot; drop ALL; no privilege escalation; RuntimeDefault seccomp</text>
+<text x="643" y="1306" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Default deny → explicit ingress-router, DNS, Keycloak-to-DB paths</text>
+<text x="643" y="1330" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">OIDC Route HTTPS egress: narrow to your actual VIPs/CIDRs</text>
+<text x="643" y="1354" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Separate generated client/database/admin Secrets; no secret values in Git</text>
+<rect x="1690" y="1195" width="595" height="290" rx="12" fill="#F0FAF5" stroke="#18794E" stroke-width="2"/>
+<text x="1708" y="1226" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#18794E" font-weight="700">RUNTIME OPERATIONS</text>
+<text x="1708" y="1258" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Startup / readiness / liveness probes</text>
+<text x="1708" y="1282" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Resource requests and memory limits</text>
+<text x="1708" y="1306" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">No public health/DB admin ports</text>
+<text x="1708" y="1330" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Central audit / monitoring integration</text>
+<text x="1708" y="1354" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Storage snapshots + logical DB backups</text>
+<text x="1708" y="1378" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Single-replica reference is NOT HA</text>
+<text x="1708" y="1402" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">HA storage design before scaling</text>
+<polyline points="287.5,505 287.5,565" fill="none" stroke="#18794E" stroke-width="2.4" marker-end="url(#arrow)" />
+<rect x="257.0" y="509.0" width="61.0" height="23" rx="4" fill="#FFFFFF"/>
+<text x="287.5" y="526.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#18794E">export</text>
+<polyline points="287.5,810 287.5,875" fill="none" stroke="#7146B8" stroke-width="2.4" marker-end="url(#arrow)" />
+<rect x="215.75" y="816.5" width="143.5" height="23" rx="4" fill="#FFFFFF"/>
+<text x="287.5" y="833.5" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#7146B8">controlled import</text>
+<polyline points="1457.5,435 1457,475 870,475 870.0,540" fill="none" stroke="#1764C0" stroke-width="2.4" marker-end="url(#arrow)" />
+<polyline points="1457.5,435 1457.5,540 1455.0,540" fill="none" stroke="#7146B8" stroke-width="2.4" marker-end="url(#arrow)" />
+<polyline points="1457.5,435 1457,475 2040,475 2040.0,540" fill="none" stroke="#087E8B" stroke-width="2.4" marker-end="url(#arrow)" />
+<polyline points="870.0,810 870.0,935" fill="none" stroke="#18794E" stroke-width="2.4" marker-end="url(#arrow)" />
+<rect x="790.75" y="846.5" width="158.5" height="23" rx="4" fill="#FFFFFF"/>
+<text x="870.0" y="863.5" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#18794E">persistent app data</text>
+<polyline points="1455.0,810 1455.0,920" fill="none" stroke="#18794E" stroke-width="2.4" marker-end="url(#arrow)" />
+<rect x="1405.75" y="839.0" width="98.5" height="23" rx="4" fill="#FFFFFF"/>
+<text x="1455.0" y="856.0" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#18794E">JDBC / 5432</text>
+<polyline points="2040.0,810 2040.0,935" fill="none" stroke="#18794E" stroke-width="2.4" marker-end="url(#arrow)" />
+<rect x="1942.0" y="846.5" width="196.0" height="23" rx="4" fill="#FFFFFF"/>
+<text x="2040.0" y="863.5" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#18794E">persistent signing state</text>
+<text x="55" y="1695" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#51647E" font-weight="400">DDA • Deployed state and enterprise handoff • 14 September 2026 • No credentials embedded</text>
+</svg>

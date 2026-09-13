@@ -1,0 +1,19 @@
+{
+  "apiVersion": "networking.k8s.io/v1",
+  "kind": "NetworkPolicy",
+  "metadata": {
+    "name": "default-deny",
+    "namespace": "dda-sso",
+    "labels": {
+      "app.kubernetes.io/part-of": "dda-sso",
+      "app.kubernetes.io/name": "platform"
+    }
+  },
+  "spec": {
+    "podSelector": {},
+    "policyTypes": [
+      "Ingress",
+      "Egress"
+    ]
+  }
+}

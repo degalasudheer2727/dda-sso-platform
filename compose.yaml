@@ -1,0 +1,29 @@
+services:
+  headroom:
+    image: ghcr.io/chopratejas/headroom@sha256:50b85d8e320cfcdf1b38919bb7ae067b93ff7a8de0a93f05b2c1246370200d1c
+    container_name: headroom-proxy
+    ports:
+      - "127.0.0.1:8787:8787"
+    command: ["--host", "0.0.0.0", "--port", "8787", "--mode", "token", "--no-ccr-inject-tool"]
+    environment:
+      HEADROOM_BEACON: "off"
+      DO_NOT_TRACK: "1"
+    volumes:
+      - headroom-data:/root/.headroom
+    restart: unless-stopped
+  open-webui:
+    image: ghcr.io/open-webui/open-webui:v0.11.3
+    container_name: open-webui
+    ports:
+      - "127.0.0.1:3000:8080"
+    environment:
+      OLLAMA_BASE_URL: http://host.docker.internal:11434
+    volumes:
+      - open-webui:/app/backend/data
+    restart: unless-stopped
+
+volumes:
+  headroom-data:
+  open-webui:
+    external: true
+    name: open-webui

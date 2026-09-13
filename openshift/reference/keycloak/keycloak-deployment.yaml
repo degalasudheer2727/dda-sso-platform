@@ -1,0 +1,182 @@
+{
+  "apiVersion": "apps/v1",
+  "kind": "Deployment",
+  "metadata": {
+    "name": "keycloak",
+    "namespace": "dda-sso",
+    "labels": {
+      "app.kubernetes.io/part-of": "dda-sso",
+      "app.kubernetes.io/name": "keycloak"
+    }
+  },
+  "spec": {
+    "replicas": 1,
+    "strategy": {
+      "type": "Recreate"
+    },
+    "selector": {
+      "matchLabels": {
+        "app": "keycloak"
+      }
+    },
+    "template": {
+      "metadata": {
+        "labels": {
+          "app": "keycloak",
+          "app.kubernetes.io/part-of": "dda-sso"
+        }
+      },
+      "spec": {
+        "automountServiceAccountToken": false,
+        "securityContext": {
+          "runAsNonRoot": true,
+          "seccompProfile": {
+            "type": "RuntimeDefault"
+          }
+        },
+        "containers": [
+          {
+            "name": "keycloak",
+            "image": "registry.example.internal/dda/keycloak-dda:26.7.3",
+            "imagePullPolicy": "IfNotPresent",
+            "ports": [
+              {
+                "containerPort": 8080
+              }
+            ],
+            "env": [
+              {
+                "name": "KC_DB",
+                "value": "postgres"
+              },
+              {
+                "name": "KC_DB_URL",
+                "value": "jdbc:postgresql://keycloak-db:5432/keycloak"
+              },
+              {
+                "name": "KC_DB_USERNAME",
+                "value": "keycloak"
+              },
+              {
+                "name": "KC_HOSTNAME",
+                "value": "https://keycloak.apps.example.internal"
+              },
+              {
+                "name": "KC_HTTP_ENABLED",
+                "value": "true"
+              },
+              {
+                "name": "KC_PROXY_HEADERS",
+                "value": "xforwarded"
+              },
+              {
+                "name": "KC_HEALTH_ENABLED",
+                "value": "true"
+              },
+              {
+                "name": "KC_BOOTSTRAP_ADMIN_USERNAME",
+                "value": "admin"
+              },
+              {
+                "name": "JAVA_OPTS_KC_HEAP",
+                "value": "-Xms256m -Xmx1024m"
+              },
+              {
+                "name": "KC_DB_PASSWORD",
+                "valueFrom": {
+                  "secretKeyRef": {
+                    "name": "identity-secrets",
+                    "key": "POSTGRES_PASSWORD"
+                  }
+                }
+              },
+              {
+                "name": "KC_BOOTSTRAP_ADMIN_PASSWORD",
+                "valueFrom": {
+                  "secretKeyRef": {
+                    "name": "identity-secrets",
+                    "key": "KEYCLOAK_ADMIN_PASSWORD"
+                  }
+                }
+              }
+            ],
+            "volumeMounts": [
+              {
+                "name": "realm",
+                "mountPath": "/opt/keycloak/data/import",
+                "readOnly": true
+              },
+              {
+                "name": "data",
+                "mountPath": "/opt/keycloak/data"
+              }
+            ],
+            "resources": {
+              "requests": {
+                "cpu": "500m",
+                "memory": "768Mi"
+              },
+              "limits": {
+                "memory": "2Gi"
+              }
+            },
+            "securityContext": {
+              "allowPrivilegeEscalation": false,
+              "capabilities": {
+                "drop": [
+                  "ALL"
+                ]
+              },
+              "runAsNonRoot": true
+            },
+            "readinessProbe": {
+              "httpGet": {
+                "path": "/health/ready",
+                "port": 9000
+              },
+              "initialDelaySeconds": 10,
+              "periodSeconds": 10,
+              "timeoutSeconds": 5
+            },
+            "livenessProbe": {
+              "httpGet": {
+                "path": "/health/ready",
+                "port": 9000
+              },
+              "initialDelaySeconds": 60,
+              "periodSeconds": 20,
+              "timeoutSeconds": 5
+            },
+            "startupProbe": {
+              "httpGet": {
+                "path": "/health/ready",
+                "port": 9000
+              },
+              "failureThreshold": 60,
+              "periodSeconds": 10,
+              "timeoutSeconds": 5
+            },
+            "args": [
+              "start",
+              "--optimized",
+              "--import-realm"
+            ]
+          }
+        ],
+        "volumes": [
+          {
+            "name": "realm",
+            "secret": {
+              "secretName": "keycloak-realm"
+            }
+          },
+          {
+            "name": "data",
+            "emptyDir": {}
+          }
+        ],
+        "terminationGracePeriodSeconds": 60
+      }
+    }
+  }
+}

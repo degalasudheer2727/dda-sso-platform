@@ -1,0 +1,5 @@
+Namespace: dda-sso
+Dex: https://dex.apps.example.internal/dex
+Keycloak: https://keycloak.apps.example.internal
+Open WebUI: https://webui.apps.example.internal
+Secret file: deployment-secrets.json (private)

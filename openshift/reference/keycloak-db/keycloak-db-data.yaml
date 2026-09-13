@@ -1,0 +1,22 @@
+{
+  "apiVersion": "v1",
+  "kind": "PersistentVolumeClaim",
+  "metadata": {
+    "name": "keycloak-db-data",
+    "namespace": "dda-sso",
+    "labels": {
+      "app.kubernetes.io/part-of": "dda-sso",
+      "app.kubernetes.io/name": "keycloak-db"
+    }
+  },
+  "spec": {
+    "accessModes": [
+      "ReadWriteOnce"
+    ],
+    "resources": {
+      "requests": {
+        "storage": "10Gi"
+      }
+    }
+  }
+}

@@ -1,0 +1,24 @@
+name: Validate deployment source
+on:
+  push:
+  pull_request:
+jobs:
+  manifests:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate generator and committed security settings
+        run: |
+          python3 -m py_compile scripts/*.py
+          python3 scripts/check-secrets.py
+          python3 scripts/render-openshift.py --domain apps.example.internal --registry registry.example.internal/dda --output openshift/reference --reference
+          python3 scripts/verify-manifests.py openshift/reference
+          git diff --exit-code -- openshift/reference
+      - name: Ensure runtime secrets are not tracked
+        run: |
+          if git ls-files | grep -E '(^\.runtime/|^backups/|deployment-secrets\.json$|^openshift/rendered/)'; then
+            echo 'Private runtime artifacts must not be tracked'
+            exit 1
+          fi

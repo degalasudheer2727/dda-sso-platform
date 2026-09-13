@@ -1,0 +1,52 @@
+[
+  {
+    "reference": "ghcr.io/dexidp/dex:v2.45.1",
+    "imageId": "sha256:bc399b03a1bf275a46a5080554fd05358f59a1bb171e8ebe2141e5222c7049c9",
+    "repoDigests": [
+      "ghcr.io/dexidp/dex@sha256:8499afd690c437f52301efd2b05b2455da5bd2dfc20332cd697dc9937f808462"
+    ],
+    "architecture": "amd64",
+    "os": "linux"
+  },
+  {
+    "reference": "quay.io/keycloak/keycloak:26.7.3",
+    "imageId": "sha256:946db99597ac833a42348d8da2dc6e28be656211758cdb5e84d2e415e158191f",
+    "repoDigests": [
+      "quay.io/keycloak/keycloak@sha256:ff4257d0d64efbe99ed1ddfaf07765cc3c36dc7518bf8324d41961327f441c54"
+    ],
+    "architecture": "amd64",
+    "os": "linux"
+  },
+  {
+    "reference": "quay.io/sclorg/postgresql-16-c9s:latest",
+    "imageId": "sha256:b206073193cd3175219162eb29b7c9efaace21b8eeb41cd9795817127b73f61f",
+    "repoDigests": [
+      "quay.io/sclorg/postgresql-16-c9s@sha256:fbef891ec464ee8d20332c7f9a4a68decc0b6db8460e7e875df6f33cac5003dc"
+    ],
+    "architecture": "amd64",
+    "os": "linux"
+  },
+  {
+    "reference": "ghcr.io/open-webui/open-webui:v0.11.3",
+    "imageId": "sha256:18fbb9da654a3e1a6ea5b4023e05410986434071cacca1d475acea872a2f9b2c",
+    "repoDigests": [
+      "ghcr.io/open-webui/open-webui@sha256:41daa0cf2561a5d4c8d1ff31ee2a98d93ab4d3ac2605cac69366ff6a3374a933"
+    ],
+    "architecture": "amd64",
+    "os": "linux"
+  },
+  {
+    "reference": "dda/keycloak:26.7.3",
+    "imageId": "sha256:0811fab41b03d527b1c533d0bdb518b1fb0b7e52bf25c79029dd661752c7f7f4",
+    "repoDigests": [],
+    "architecture": "amd64",
+    "os": "linux"
+  },
+  {
+    "reference": "dda/open-webui:v0.11.3",
+    "imageId": "sha256:f71d43367d83074b3358c9f0f4c826ab24f95b698df3d66f947039331f5f3f25",
+    "repoDigests": [],
+    "architecture": "amd64",
+    "os": "linux"
+  }
+]

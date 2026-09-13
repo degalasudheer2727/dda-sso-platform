@@ -1,0 +1,12 @@
+{
+  "dedicated_admin": "admin@dda.test",
+  "admin_role_verified": true,
+  "brokered_users": 5,
+  "all_federated_to": "dex",
+  "all_webui_roles": "user",
+  "client": "open-webui",
+  "realm": "dda",
+  "pkce": "S256",
+  "invalid_redirect_rejected": true,
+  "complete_upstream_profiles": true
+}

@@ -1,0 +1,20 @@
+backups/
+.env
+
+.runtime/
+openshift/rendered/
+verification/private/
+*.tar
+*.tar.gz
+__pycache__/
+.env.*
+*.key
+*.p12
+*.pfx
+.codex/auth.json
+# Authenticated demo captures stay local; publish source diagrams only.
+verification/*.png
+verification/*.webm
+architecture/*.png
+
+.DS_Store

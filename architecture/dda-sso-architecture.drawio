@@ -1,0 +1,328 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mxfile host="app.diagrams.net" type="device" version="24.7.17">
+  <diagram name="01  |  Deployed Mac architecture" id="01-local">
+    <mxGraphModel dx="2200" dy="1500" grid="1" gridSize="10" page="1" pageScale="1" pageWidth="2200" pageHeight="1500" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="text0" value="01  |  Deployed Mac architecture" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;fontFamily=Helvetica;fontSize=32;fontColor=#172B4D;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="55" y="40" width="2090" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="text1" value="RUNNING LOCALLY  •  Intel Mac / Docker Desktop  •  Direct Dex login through Keycloak brokerage" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;fontFamily=Helvetica;fontSize=19;fontColor=#18794E;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="55" y="105" width="2050" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="band2" value="&lt;b&gt;HOST / BROWSER&lt;/b&gt;&lt;br&gt;&lt;br&gt;" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#EAF0F9;strokeColor=#AFC0D4;strokeWidth=2;fontFamily=Helvetica;fontSize=17;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="45" y="170" width="380" height="780" as="geometry" />
+        </mxCell>
+        <mxCell id="band3" value="&lt;b&gt;DOCKER NETWORK  openwebui_default  •  named DNS aliases  •  persistent containers&lt;/b&gt;&lt;br&gt;&lt;br&gt;" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#EAF0F9;strokeColor=#AFC0D4;strokeWidth=2;fontFamily=Helvetica;fontSize=17;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="470" y="170" width="1240" height="810" as="geometry" />
+        </mxCell>
+        <mxCell id="band4" value="&lt;b&gt;SOURCE &amp;amp; OPERATIONS&lt;/b&gt;&lt;br&gt;&lt;br&gt;" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#EAF0F9;strokeColor=#AFC0D4;strokeWidth=2;fontFamily=Helvetica;fontSize=17;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="1750" y="170" width="405" height="1245" as="geometry" />
+        </mxCell>
+        <mxCell id="browser" value="&lt;b&gt;User and administrator browser&lt;/b&gt;&lt;br&gt;&lt;br&gt;Web UI: webui.localhost:3000&lt;br&gt;Click “Continue with DDA SSO”&lt;br&gt;Direct Dex email/password form&lt;br&gt;No second profile form&lt;br&gt;Existing Keycloak session enables SSO" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#FFFFFF;strokeColor=#1764C0;strokeWidth=2;fontFamily=Helvetica;fontSize=17;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="65" y="245" width="340" height="245" as="geometry" />
+        </mxCell>
+        <mxCell id="dns" value="&lt;b&gt;Local address boundary&lt;/b&gt;&lt;br&gt;&lt;br&gt;*.localhost resolves to loopback&lt;br&gt;Docker aliases use identical names&lt;br&gt;Host ports bind 127.0.0.1 only&lt;br&gt;Local HTTP is a demo exception&lt;br&gt;Issuer names must match everywhere" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#FFF9ED;strokeColor=#A15C00;strokeWidth=2;fontFamily=Helvetica;fontSize=17;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="65" y="555" width="340" height="245" as="geometry" />
+        </mxCell>
+        <mxCell id="webui" value="&lt;b&gt;OPEN WEBUI  v0.11.3&lt;/b&gt;&lt;br&gt;&lt;br&gt;Container: open-webui&lt;br&gt;Host 3000 → container 8080&lt;br&gt;Client ID: open-webui&lt;br&gt;Issuer: Keycloak /realms/dda&lt;br&gt;OIDC code + PKCE S256&lt;br&gt;Roles: webui-user / webui-admin" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#FFFFFF;strokeColor=#1764C0;strokeWidth=2;fontFamily=Helvetica;fontSize=17;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="500" y="270" width="350" height="255" as="geometry" />
+        </mxCell>
+        <mxCell id="kc" value="&lt;b&gt;KEYCLOAK  26.7.3&lt;/b&gt;&lt;br&gt;&lt;br&gt;Container: dda-keycloak&lt;br&gt;Host/container port 8080&lt;br&gt;Realm: dda | broker alias: dex&lt;br&gt;Confidential broker client&lt;br&gt;JWKS + issuer validation&lt;br&gt;No review-profile / no auto-link" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#FFFFFF;strokeColor=#7146B8;strokeWidth=2;fontFamily=Helvetica;fontSize=17;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="920" y="270" width="350" height="255" as="geometry" />
+        </mxCell>
+        <mxCell id="dex" value="&lt;b&gt;DEX  v2.45.1&lt;/b&gt;&lt;br&gt;&lt;br&gt;Container: dda-dex&lt;br&gt;Host/container port 5556&lt;br&gt;Issuer: /dex&lt;br&gt;5 fully populated test profiles&lt;br&gt;1 dedicated admin identity&lt;br&gt;bcrypt local passwords" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#FFFFFF;strokeColor=#087E8B;strokeWidth=2;fontFamily=Helvetica;fontSize=17;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="1340" y="270" width="340" height="255" as="geometry" />
+        </mxCell>
+        <mxCell id="webvol" value="&lt;b&gt;EXISTING APP DATA&lt;/b&gt;&lt;br&gt;&lt;br&gt;External volume: open-webui&lt;br&gt;Mount: /app/backend/data&lt;br&gt;SQLite, accounts, chats, uploads&lt;br&gt;Original administrator retained" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#F0FAF5;strokeColor=#18794E;strokeWidth=2;fontFamily=Helvetica;fontSize=17;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="500" y="720" width="350" height="175" as="geometry" />
+        </mxCell>
+        <mxCell id="pg" value="&lt;b&gt;POSTGRESQL  16&lt;/b&gt;&lt;br&gt;&lt;br&gt;Container: dda-keycloak-db&lt;br&gt;Internal port 5432 only&lt;br&gt;Database / app role: keycloak&lt;br&gt;Separate postgres administrator" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#FFFFFF;strokeColor=#18794E;strokeWidth=2;fontFamily=Helvetica;fontSize=17;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="920" y="625" width="350" height="175" as="geometry" />
+        </mxCell>
+        <mxCell id="pgvol" value="&lt;b&gt;DATABASE VOLUME&lt;/b&gt;&lt;br&gt;&lt;br&gt;openwebui_keycloak-db-data&lt;br&gt;Mount: /var/lib/pgsql/data&lt;br&gt;Realm, broker links, roles, sessions" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#F0FAF5;strokeColor=#18794E;strokeWidth=2;fontFamily=Helvetica;fontSize=14;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="920" y="825" width="350" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="dexvol" value="&lt;b&gt;DEX STATE&lt;/b&gt;&lt;br&gt;&lt;br&gt;Volume: openwebui_dex-data&lt;br&gt;Mount: /var/dex&lt;br&gt;SQLite: dex.db&lt;br&gt;Signing keys and session state" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#F0FAF5;strokeColor=#18794E;strokeWidth=2;fontFamily=Helvetica;fontSize=17;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="1340" y="720" width="340" height="175" as="geometry" />
+        </mxCell>
+        <mxCell id="git" value="&lt;b&gt;LOCAL GIT REPOSITORY&lt;/b&gt;&lt;br&gt;&lt;br&gt;Per-component folders + READMEs&lt;br&gt;Compose + bootstrap generators&lt;br&gt;27 native OpenShift resources&lt;br&gt;Editable Draw.io + SVG diagrams&lt;br&gt;Verification scripts / screenshots" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#FFFFFF;strokeColor=#1764C0;strokeWidth=2;fontFamily=Helvetica;fontSize=17;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="1775" y="240" width="355" height="245" as="geometry" />
+        </mxCell>
+        <mxCell id="private" value="&lt;b&gt;PRIVATE RUNTIME STATE&lt;/b&gt;&lt;br&gt;&lt;br&gt;.runtime/secrets.json&lt;br&gt;TEST-USERS.md / ADMIN-ACCESS.md&lt;br&gt;Client / database / admin secrets&lt;br&gt;Excluded from Git&lt;br&gt;No credentials in this diagram" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#FFF9ED;strokeColor=#A15C00;strokeWidth=2;fontFamily=Helvetica;fontSize=17;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="1775" y="525" width="355" height="225" as="geometry" />
+        </mxCell>
+        <mxCell id="backup" value="&lt;b&gt;BACKUP &amp;amp; OFFLINE TRANSFER&lt;/b&gt;&lt;br&gt;&lt;br&gt;Quiesce SQLite writers&lt;br&gt;pg_dump + Dex / Web UI copies&lt;br&gt;Restore requires separate drill&lt;br&gt;6.3 GB class Docker image archive&lt;br&gt;SHA256 checksum + image lock" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#F0FAF5;strokeColor=#18794E;strokeWidth=2;fontFamily=Helvetica;fontSize=17;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="1775" y="790" width="355" height="240" as="geometry" />
+        </mxCell>
+        <mxCell id="validation" value="&lt;b&gt;VERIFIED LOCALLY&lt;/b&gt;&lt;br&gt;&lt;br&gt;5 direct user logins + admin login&lt;br&gt;Admin Panel + realm-admin SSO&lt;br&gt;Ordinary users remain non-admin&lt;br&gt;Invalid OAuth redirect rejected&lt;br&gt;Restart persistence and backup&lt;br&gt;Open WebUI arbitrary UID healthy" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#FFFFFF;strokeColor=#18794E;strokeWidth=2;fontFamily=Helvetica;fontSize=17;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="1775" y="1070" width="355" height="285" as="geometry" />
+        </mxCell>
+        <mxCell id="band18" value="&lt;b&gt;INDEPENDENT DEVELOPER UTILITY  •  not in the SSO trust chain&lt;/b&gt;&lt;br&gt;&lt;br&gt;" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#EAF0F9;strokeColor=#AFC0D4;strokeWidth=2;fontFamily=Helvetica;fontSize=17;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="45" y="1005" width="1665" height="410" as="geometry" />
+        </mxCell>
+        <mxCell id="codex" value="&lt;b&gt;CODEX ON THE MAC&lt;/b&gt;&lt;br&gt;&lt;br&gt;Existing ChatGPT authentication&lt;br&gt;User config routes model requests&lt;br&gt;MCP retrieves compressed originals" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#FFFFFF;strokeColor=#1764C0;strokeWidth=2;fontFamily=Helvetica;fontSize=17;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="75" y="1100" width="410" height="180" as="geometry" />
+        </mxCell>
+        <mxCell id="headroom" value="&lt;b&gt;HEADROOM  v0.27.0&lt;/b&gt;&lt;br&gt;&lt;br&gt;headroom-proxy: localhost:8787&lt;br&gt;HTTP / WebSocket token compression&lt;br&gt;Loopback dashboard; no user admin&lt;br&gt;Separate headroom-data volume" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#FFFFFF;strokeColor=#087E8B;strokeWidth=2;fontFamily=Helvetica;fontSize=17;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="625" y="1100" width="430" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="provider" value="&lt;b&gt;UPSTREAM LLM SERVICE&lt;/b&gt;&lt;br&gt;&lt;br&gt;Codex traffic forwarded upstream&lt;br&gt;Independent of Web UI SSO&lt;br&gt;Enterprise Web UI inference endpoint&lt;br&gt;must be configured separately" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#FFFFFF;strokeColor=#7146B8;strokeWidth=2;fontFamily=Helvetica;fontSize=17;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="1195" y="1100" width="470" height="200" as="geometry" />
+        </mxCell>
+        <mxCell id="edge0" value="Open WebUI" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#1764C0;strokeWidth=2;fontColor=#1764C0;fontSize=14;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="browser" target="webui">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="450" y="367" />
+              <mxPoint x="450" y="397" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge1" value="code + PKCE" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#1764C0;strokeWidth=2;fontColor=#1764C0;fontSize=14;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="webui" target="kc">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge2" value="OIDC broker" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#7146B8;strokeWidth=2;fontColor=#7146B8;fontSize=14;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="kc" target="dex">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge3" value="persistent data" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#18794E;strokeWidth=2;fontColor=#18794E;fontSize=14;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="webui" target="webvol">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge4" value="JDBC / 5432" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#18794E;strokeWidth=2;fontColor=#18794E;fontSize=14;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="kc" target="pg">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge5" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#18794E;strokeWidth=2;fontColor=#18794E;fontSize=14;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="pg" target="pgvol">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge6" value="keys + sessions" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#18794E;strokeWidth=2;fontColor=#18794E;fontSize=14;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="dex" target="dexvol">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge7" value="localhost:8787" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#087E8B;strokeWidth=2;fontColor=#087E8B;fontSize=14;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="codex" target="headroom">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge8" value="provider HTTPS" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#7146B8;strokeWidth=2;fontColor=#7146B8;fontSize=14;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="headroom" target="provider">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="02  |  Seamless SSO and administrator authorization" id="02-sso">
+    <mxGraphModel dx="2200" dy="1710" grid="1" gridSize="10" page="1" pageScale="1" pageWidth="2200" pageHeight="1710" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="text0" value="02  |  Seamless SSO and administrator authorization" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;fontFamily=Helvetica;fontSize=32;fontColor=#172B4D;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="55" y="40" width="2090" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="text1" value="BROWSER FRONT CHANNEL + VERIFIED SERVER BACK CHANNELS  •  authorization code flow  •  no password relay to Web UI" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;fontFamily=Helvetica;fontSize=18;fontColor=#51647E;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="55" y="105" width="2090" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="b" value="&lt;b&gt;BROWSER&lt;/b&gt;&lt;br&gt;&lt;br&gt;" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#EAF0F9;strokeColor=#1764C0;strokeWidth=2;fontFamily=Helvetica;fontSize=13;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="65" y="195" width="470" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="w" value="&lt;b&gt;OPEN WEBUI&lt;/b&gt;&lt;br&gt;&lt;br&gt;" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#EAF0F9;strokeColor=#1764C0;strokeWidth=2;fontFamily=Helvetica;fontSize=13;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="595" y="195" width="470" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="k" value="&lt;b&gt;KEYCLOAK / dda&lt;/b&gt;&lt;br&gt;&lt;br&gt;" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#EAF0F9;strokeColor=#7146B8;strokeWidth=2;fontFamily=Helvetica;fontSize=13;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="1125" y="195" width="470" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="d" value="&lt;b&gt;DEX / local&lt;/b&gt;&lt;br&gt;&lt;br&gt;" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#EAF0F9;strokeColor=#1764C0;strokeWidth=2;fontFamily=Helvetica;fontSize=13;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="1655" y="195" width="470" height="65" as="geometry" />
+        </mxCell>
+        <mxCell id="s1" value="&lt;b&gt;1. Begin SSO&lt;/b&gt;&lt;br&gt;&lt;br&gt;/oauth/oidc/login&lt;br&gt;State + nonce + PKCE challenge&lt;br&gt;kc_idp_hint=dex" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#FFFFFF;strokeColor=#1764C0;strokeWidth=2;fontFamily=Helvetica;fontSize=17;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="65" y="310" width="470" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="s2" value="&lt;b&gt;2. Authorize at Keycloak&lt;/b&gt;&lt;br&gt;&lt;br&gt;/realms/dda/protocol/openid-connect/auth&lt;br&gt;Client: open-webui&lt;br&gt;Exact registered Web UI callback" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#FFFFFF;strokeColor=#1764C0;strokeWidth=2;fontFamily=Helvetica;fontSize=17;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="1125" y="310" width="470" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="s3" value="&lt;b&gt;3. Direct upstream login&lt;/b&gt;&lt;br&gt;&lt;br&gt;Dex /dex/auth/local/login&lt;br&gt;Email + password entered only here&lt;br&gt;No Keycloak selection page" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#FFFFFF;strokeColor=#087E8B;strokeWidth=2;fontFamily=Helvetica;fontSize=17;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="1655" y="515" width="470" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="s4" value="&lt;b&gt;4. Dex → Keycloak callback&lt;/b&gt;&lt;br&gt;&lt;br&gt;/realms/dda/broker/dex/endpoint&lt;br&gt;Code exchanged at Dex /token&lt;br&gt;Broker client: keycloak-dda" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#FFFFFF;strokeColor=#1764C0;strokeWidth=2;fontFamily=Helvetica;fontSize=17;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="1125" y="720" width="470" height="155" as="geometry" />
+        </mxCell>
+        <mxCell id="s5" value="&lt;b&gt;5. Validate and provision&lt;/b&gt;&lt;br&gt;&lt;br&gt;Dex issuer + JWKS signature checked&lt;br&gt;Stable federated subject maps identity&lt;br&gt;Complete profile imported / FORCE sync&lt;br&gt;Unique-user flow; collisions fail" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#FFFFFF;strokeColor=#1764C0;strokeWidth=2;fontFamily=Helvetica;fontSize=17;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="1125" y="930" width="470" height="185" as="geometry" />
+        </mxCell>
+        <mxCell id="s6" value="&lt;b&gt;6. Keycloak → Web UI callback&lt;/b&gt;&lt;br&gt;&lt;br&gt;/oauth/oidc/callback&lt;br&gt;Web UI redeems authorization code&lt;br&gt;Client secret + PKCE verifier&lt;br&gt;Validates Keycloak token / claims" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#FFFFFF;strokeColor=#1764C0;strokeWidth=2;fontFamily=Helvetica;fontSize=17;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="595" y="1170" width="470" height="185" as="geometry" />
+        </mxCell>
+        <mxCell id="s7" value="&lt;b&gt;7. Application session&lt;/b&gt;&lt;br&gt;&lt;br&gt;Signed-in user lands in Open WebUI&lt;br&gt;No second profile/details form&lt;br&gt;Second Keycloak app reuses SSO" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#FFFFFF;strokeColor=#1764C0;strokeWidth=2;fontFamily=Helvetica;fontSize=17;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="65" y="1170" width="470" height="185" as="geometry" />
+        </mxCell>
+        <mxCell id="edge0" value="browser redirect + provider hint" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#1764C0;strokeWidth=2;fontColor=#1764C0;fontSize=14;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0;entryY=0.5;" edge="1" parent="1" source="s1" target="s2">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="560" y="385" />
+              <mxPoint x="1100" y="385" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge1" value="automatic broker redirect" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#7146B8;strokeWidth=2;fontColor=#7146B8;fontSize=14;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.5;entryX=0.5;entryY=0;" edge="1" parent="1" source="s2" target="s3">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1890" y="385" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge2" value="authorization code" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#087E8B;strokeWidth=2;fontColor=#087E8B;fontSize=14;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=1;entryY=0.5;" edge="1" parent="1" source="s3" target="s4">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1890" y="797" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#7146B8;strokeWidth=2;fontColor=#7146B8;fontSize=14;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="s4" target="s5">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge4" value="Keycloak authorization code" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#7146B8;strokeWidth=2;fontColor=#7146B8;fontSize=14;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=1;entryY=0.5;" edge="1" parent="1" source="s5" target="s6">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1360" y="1262" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge5" value="app session established" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#1764C0;strokeWidth=2;fontColor=#1764C0;fontSize=14;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.5;entryX=1;entryY=0.5;" edge="1" parent="1" source="s6" target="s7">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="dexclaims" value="&lt;b&gt;AUTHORITATIVE PROFILE&lt;/b&gt;&lt;br&gt;&lt;br&gt;email: testuser01@dda.test&lt;br&gt;name: Alex Morgan&lt;br&gt;Stable subject: test identity ID&lt;br&gt;Admin: admin@dda.test&lt;br&gt;No client secret exposed to browser" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#EFFBFB;strokeColor=#087E8B;strokeWidth=2;fontFamily=Helvetica;fontSize=17;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="1655" y="945" width="470" height="245" as="geometry" />
+        </mxCell>
+        <mxCell id="trust" value="&lt;b&gt;TWO CONFIDENTIAL CLIENTS&lt;/b&gt;&lt;br&gt;&lt;br&gt;Dex client: keycloak-dda&lt;br&gt;Keycloak client: open-webui&lt;br&gt;Independent generated secrets&lt;br&gt;Strict issuer / signature validation&lt;br&gt;No password/direct grant on app client" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#FFF9ED;strokeColor=#A15C00;strokeWidth=2;fontFamily=Helvetica;fontSize=17;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="65" y="565" width="470" height="250" as="geometry" />
+        </mxCell>
+        <mxCell id="roles" value="&lt;b&gt;EXPLICIT AUTHORIZATION&lt;/b&gt;&lt;br&gt;&lt;br&gt;Five personas → webui-user → user&lt;br&gt;Dedicated admin → webui-admin → admin&lt;br&gt;Admin also: realm-management/realm-admin&lt;br&gt;Master admin remains separate&lt;br&gt;No email-based automatic account merge" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#F0FAF5;strokeColor=#18794E;strokeWidth=2;fontFamily=Helvetica;fontSize=17;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="65" y="865" width="1000" height="235" as="geometry" />
+        </mxCell>
+        <mxCell id="session" value="&lt;b&gt;SESSION AND LOGOUT BOUNDARY&lt;/b&gt;&lt;br&gt;&lt;br&gt;Keycloak access token: 5 minutes • SSO idle: 30 minutes • SSO max: 8 hours&lt;br&gt;Ending the app / Keycloak session does not promise immediate revocation of every upstream session or issued JWT.&lt;br&gt;Enterprise logout, deprovisioning, MFA and expiry semantics must be validated with the actual upstream provider." style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#FFF9ED;strokeColor=#A15C00;strokeWidth=2;fontFamily=Helvetica;fontSize=18;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="65" y="1420" width="2060" height="205" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="03  |  Air-gapped OpenShift deployment reference" id="03-openshift">
+    <mxGraphModel dx="2400" dy="1720" grid="1" gridSize="10" page="1" pageScale="1" pageWidth="2400" pageHeight="1720" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="text0" value="03  |  Air-gapped OpenShift deployment reference" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;fontFamily=Helvetica;fontSize=32;fontColor=#172B4D;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="55" y="40" width="2290" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="text1" value="GENERATED REFERENCE — NOT DEPLOYED TO A CLUSTER  •  Replace registry, DNS domain, storage class and CA placeholders" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;fontFamily=Helvetica;fontSize=19;fontColor=#A15C00;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="55" y="105" width="2290" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="band2" value="&lt;b&gt;CONNECTED BUILD / CONTROLLED TRANSFER&lt;/b&gt;&lt;br&gt;&lt;br&gt;" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#EAF0F9;strokeColor=#AFC0D4;strokeWidth=2;fontFamily=Helvetica;fontSize=17;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="45" y="180" width="485" height="1435" as="geometry" />
+        </mxCell>
+        <mxCell id="build" value="&lt;b&gt;APPROVED BUILD WORKSTATION&lt;/b&gt;&lt;br&gt;&lt;br&gt;Pinned Dex and PostgreSQL images&lt;br&gt;Keycloak optimized production image&lt;br&gt;Open WebUI arbitrary-UID derivative&lt;br&gt;No runtime pip / npm / Maven pulls&lt;br&gt;Match target CPU architecture" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#FFFFFF;strokeColor=#1764C0;strokeWidth=2;fontFamily=Helvetica;fontSize=17;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="70" y="260" width="435" height="245" as="geometry" />
+        </mxCell>
+        <mxCell id="archive" value="&lt;b&gt;OFFLINE IMAGE BUNDLE&lt;/b&gt;&lt;br&gt;&lt;br&gt;docker save → dda-images.tar&lt;br&gt;Transfer archive + SHA256 checksum&lt;br&gt;Transfer repository + oc / Podman&lt;br&gt;Keep credentials out of image layers&lt;br&gt;Scan / SBOM / sign final images" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#FFFFFF;strokeColor=#18794E;strokeWidth=2;fontFamily=Helvetica;fontSize=17;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="70" y="565" width="435" height="245" as="geometry" />
+        </mxCell>
+        <mxCell id="registry" value="&lt;b&gt;INTERNAL REGISTRY&lt;/b&gt;&lt;br&gt;&lt;br&gt;registry.&amp;lt;enterprise&amp;gt;/dda&lt;br&gt;Import/tag/push with Podman&lt;br&gt;Record destination manifest digests&lt;br&gt;Configure pull secret and registry CA" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#FFFFFF;strokeColor=#7146B8;strokeWidth=2;fontFamily=Helvetica;fontSize=17;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="70" y="875" width="435" height="205" as="geometry" />
+        </mxCell>
+        <mxCell id="accept" value="&lt;b&gt;PRODUCTION ACCEPTANCE GATES&lt;/b&gt;&lt;br&gt;&lt;br&gt;Actual OpenShift version / SCC admission&lt;br&gt;PVC provisioning and restore drill&lt;br&gt;TLS trust + Route hairpin DNS&lt;br&gt;NetworkPolicy / ingress topology&lt;br&gt;HA design + load/failure tests&lt;br&gt;Real IdP MFA / user lifecycle&lt;br&gt;Approved internal LLM + RAG tests" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#FFF9ED;strokeColor=#A15C00;strokeWidth=2;fontFamily=Helvetica;fontSize=17;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="70" y="1140" width="435" height="365" as="geometry" />
+        </mxCell>
+        <mxCell id="band7" value="&lt;b&gt;ENTERPRISE OPENSHIFT CLUSTER  •  namespace dda-sso  •  restricted SCC&lt;/b&gt;&lt;br&gt;&lt;br&gt;" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#EAF0F9;strokeColor=#AFC0D4;strokeWidth=2;fontFamily=Helvetica;fontSize=17;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="580" y="180" width="1760" height="1435" as="geometry" />
+        </mxCell>
+        <mxCell id="route" value="&lt;b&gt;HTTPS INGRESS ROUTES&lt;/b&gt;&lt;br&gt;&lt;br&gt;webui.&amp;lt;domain&amp;gt;  •  keycloak.&amp;lt;domain&amp;gt;  •  dex.&amp;lt;domain&amp;gt;&lt;br&gt;Edge TLS termination; HTTP redirected to HTTPS&lt;br&gt;Trusted ingress CA in browsers and OIDC back channels&lt;br&gt;Use re-encrypt Routes + pod certificates if full in-cluster TLS is required" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#EDF4FF;strokeColor=#1764C0;strokeWidth=2;fontFamily=Helvetica;fontSize=18;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="625" y="260" width="1665" height="175" as="geometry" />
+        </mxCell>
+        <mxCell id="ow" value="&lt;b&gt;OPEN WEBUI DEPLOYMENT&lt;/b&gt;&lt;br&gt;&lt;br&gt;Derived v0.11.3 image&lt;br&gt;Service port 8080&lt;br&gt;OAuth code + PKCE / role claims&lt;br&gt;Direct Dex provider hint&lt;br&gt;Offline downloads/version checks OFF&lt;br&gt;Separate bootstrap admin Secret" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#FFFFFF;strokeColor=#1764C0;strokeWidth=2;fontFamily=Helvetica;fontSize=17;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="625" y="540" width="490" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="kc" value="&lt;b&gt;KEYCLOAK DEPLOYMENT&lt;/b&gt;&lt;br&gt;&lt;br&gt;Optimized 26.7.3 image&lt;br&gt;start --optimized --import-realm&lt;br&gt;Service 8080; management 9000&lt;br&gt;KC_HOSTNAME=https://keycloak…&lt;br&gt;xforwarded behind trusted router&lt;br&gt;Realm import only on first DB boot" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#FFFFFF;strokeColor=#7146B8;strokeWidth=2;fontFamily=Helvetica;fontSize=17;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="1210" y="540" width="490" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="dx" value="&lt;b&gt;DEX DEPLOYMENT&lt;/b&gt;&lt;br&gt;&lt;br&gt;Pinned v2.45.1 image&lt;br&gt;Service 5556; health 5558&lt;br&gt;https://dex.&amp;lt;domain&amp;gt;/dex&lt;br&gt;Config mounted from a Secret&lt;br&gt;Demo profiles explicitly opt-in&lt;br&gt;Replace with enterprise connector" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#FFFFFF;strokeColor=#087E8B;strokeWidth=2;fontFamily=Helvetica;fontSize=17;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="1795" y="540" width="490" height="270" as="geometry" />
+        </mxCell>
+        <mxCell id="wv" value="&lt;b&gt;WEB UI PVC&lt;/b&gt;&lt;br&gt;&lt;br&gt;10 Gi RWO /app/backend/data&lt;br&gt;SQLite + files → ONE replica&lt;br&gt;Recreate strategy" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#F0FAF5;strokeColor=#18794E;strokeWidth=2;fontFamily=Helvetica;fontSize=17;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="625" y="935" width="490" height="155" as="geometry" />
+        </mxCell>
+        <mxCell id="db" value="&lt;b&gt;POSTGRESQL DEPLOYMENT + PVC&lt;/b&gt;&lt;br&gt;&lt;br&gt;SCLorg PostgreSQL 16&lt;br&gt;Internal Service 5432&lt;br&gt;10 Gi RWO /var/lib/pgsql/data&lt;br&gt;keycloak app role / postgres DBA" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#F0FAF5;strokeColor=#18794E;strokeWidth=2;fontFamily=Helvetica;fontSize=17;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="1210" y="920" width="490" height="205" as="geometry" />
+        </mxCell>
+        <mxCell id="dv" value="&lt;b&gt;DEX PVC&lt;/b&gt;&lt;br&gt;&lt;br&gt;1 Gi RWO /var/dex&lt;br&gt;SQLite signing/session state&lt;br&gt;ONE replica / Recreate" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#F0FAF5;strokeColor=#18794E;strokeWidth=2;fontFamily=Helvetica;fontSize=17;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="1795" y="935" width="490" height="155" as="geometry" />
+        </mxCell>
+        <mxCell id="security" value="&lt;b&gt;SECURITY &amp;amp; NETWORK POLICIES&lt;/b&gt;&lt;br&gt;&lt;br&gt;No fixed UID, privileged mode, hostPath or anyuid SCC&lt;br&gt;runAsNonRoot; drop ALL; no privilege escalation; RuntimeDefault seccomp&lt;br&gt;Default deny → explicit ingress-router, DNS, Keycloak-to-DB paths&lt;br&gt;OIDC Route HTTPS egress: narrow to your actual VIPs/CIDRs&lt;br&gt;Separate generated client/database/admin Secrets; no secret values in Git" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#FFF9ED;strokeColor=#A15C00;strokeWidth=2;fontFamily=Helvetica;fontSize=17;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="625" y="1195" width="1010" height="290" as="geometry" />
+        </mxCell>
+        <mxCell id="ops" value="&lt;b&gt;RUNTIME OPERATIONS&lt;/b&gt;&lt;br&gt;&lt;br&gt;Startup / readiness / liveness probes&lt;br&gt;Resource requests and memory limits&lt;br&gt;No public health/DB admin ports&lt;br&gt;Central audit / monitoring integration&lt;br&gt;Storage snapshots + logical DB backups&lt;br&gt;Single-replica reference is NOT HA&lt;br&gt;HA storage design before scaling" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#F0FAF5;strokeColor=#18794E;strokeWidth=2;fontFamily=Helvetica;fontSize=17;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="1690" y="1195" width="595" height="290" as="geometry" />
+        </mxCell>
+        <mxCell id="edge0" value="export" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#18794E;strokeWidth=2;fontColor=#18794E;fontSize=14;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="build" target="archive">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge1" value="controlled import" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#7146B8;strokeWidth=2;fontColor=#7146B8;fontSize=14;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="archive" target="registry">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge2" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#1764C0;strokeWidth=2;fontColor=#1764C0;fontSize=14;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="route" target="ow">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1457" y="475" />
+              <mxPoint x="870" y="475" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge3" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#7146B8;strokeWidth=2;fontColor=#7146B8;fontSize=14;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="route" target="kc">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge4" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#087E8B;strokeWidth=2;fontColor=#087E8B;fontSize=14;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="route" target="dx">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="1457" y="475" />
+              <mxPoint x="2040" y="475" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="edge5" value="persistent app data" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#18794E;strokeWidth=2;fontColor=#18794E;fontSize=14;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="ow" target="wv">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge6" value="JDBC / 5432" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#18794E;strokeWidth=2;fontColor=#18794E;fontSize=14;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="kc" target="db">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="edge7" value="persistent signing state" style="edgeStyle=orthogonalEdgeStyle;rounded=1;html=1;endArrow=block;endFill=1;strokeColor=#18794E;strokeWidth=2;fontColor=#18794E;fontSize=14;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;entryX=0.5;entryY=0;" edge="1" parent="1" source="dx" target="dv">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram name="04  |  Identity inventory and operational ownership" id="04-operations">
+    <mxGraphModel dx="2200" dy="1490" grid="1" gridSize="10" page="1" pageScale="1" pageWidth="2200" pageHeight="1490" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="text0" value="04  |  Identity inventory and operational ownership" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;fontFamily=Helvetica;fontSize=32;fontColor=#172B4D;fontStyle=1;" vertex="1" parent="1">
+          <mxGeometry x="55" y="40" width="2090" height="55" as="geometry" />
+        </mxCell>
+        <mxCell id="text1" value="SIX UPSTREAM IDENTITIES  •  five ordinary personas + one dedicated administrator  •  passwords intentionally excluded" style="text;html=1;strokeColor=none;fillColor=none;align=left;verticalAlign=top;whiteSpace=wrap;fontFamily=Helvetica;fontSize=19;fontColor=#51647E;fontStyle=0;" vertex="1" parent="1">
+          <mxGeometry x="55" y="105" width="2080" height="45" as="geometry" />
+        </mxCell>
+        <mxCell id="users" value="&lt;b&gt;UPSTREAM DEX PERSONAS&lt;/b&gt;&lt;br&gt;&lt;br&gt;testuser01@dda.test  •  Alex Morgan&lt;br&gt;testuser02@dda.test  •  Jamie Parker&lt;br&gt;testuser03@dda.test  •  Taylor Reed&lt;br&gt;testuser04@dda.test  •  Jordan Blake&lt;br&gt;testuser05@dda.test  •  Casey Brooks&lt;br&gt;&lt;br&gt;All five: webui-user role → ordinary app user&lt;br&gt;Stable IDs dda-test-01 … dda-test-05&lt;br&gt;Profile name/email inherited from Dex" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#FFFFFF;strokeColor=#1764C0;strokeWidth=2;fontFamily=Helvetica;fontSize=17;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="65" y="230" width="660" height="390" as="geometry" />
+        </mxCell>
+        <mxCell id="admins" value="&lt;b&gt;DEFAULT ADMINISTRATION&lt;/b&gt;&lt;br&gt;&lt;br&gt;Dex SSO identity: admin@dda.test / DDA Administrator&lt;br&gt;Keycloak dda: explicit realm-management/realm-admin&lt;br&gt;Open WebUI: explicit webui-admin claim&lt;br&gt;Keycloak master: separate admin credential&lt;br&gt;PostgreSQL: postgres (internal administration only)&lt;br&gt;&lt;br&gt;Dex config: file/Git administration, no admin web UI&lt;br&gt;Headroom: loopback utility, no built-in user accounts&lt;br&gt;Existing Web UI administrators preserved" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#FFFFFF;strokeColor=#7146B8;strokeWidth=2;fontFamily=Helvetica;fontSize=17;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="785" y="230" width="1350" height="390" as="geometry" />
+        </mxCell>
+        <mxCell id="config" value="&lt;b&gt;REPRODUCIBLE SOURCE&lt;/b&gt;&lt;br&gt;&lt;br&gt;compose.yaml + compose.identity.yaml&lt;br&gt;scripts/bootstrap.py / sync-keycloak.py&lt;br&gt;Per-component README + config templates&lt;br&gt;scripts/render-openshift.py → 27 resources&lt;br&gt;images.lock.json + derived Dockerfiles&lt;br&gt;Draw.io pages + SVG previews" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#FFFFFF;strokeColor=#1764C0;strokeWidth=2;fontFamily=Helvetica;fontSize=17;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="65" y="705" width="660" height="305" as="geometry" />
+        </mxCell>
+        <mxCell id="secrets" value="&lt;b&gt;PRIVATE MATERIAL&lt;/b&gt;&lt;br&gt;&lt;br&gt;.runtime/TEST-USERS.md&lt;br&gt; .runtime/ADMIN-ACCESS.md&lt;br&gt;Generated secrets and bcrypt hashes&lt;br&gt;Database dumps / app backups&lt;br&gt;Rendered OpenShift Secret files&lt;br&gt;&lt;br&gt;Excluded from Git; protect/encrypt for transfer" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#FFF9ED;strokeColor=#A15C00;strokeWidth=2;fontFamily=Helvetica;fontSize=17;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="785" y="705" width="620" height="305" as="geometry" />
+        </mxCell>
+        <mxCell id="evidence" value="&lt;b&gt;DEMONSTRATED / VERIFIED&lt;/b&gt;&lt;br&gt;&lt;br&gt;Direct login for all five identities&lt;br&gt;Fresh administrator provisioned without profile form&lt;br&gt;Web UI Admin Panel + Keycloak realm console SSO&lt;br&gt;Five ordinary users remain non-admin&lt;br&gt;Invalid redirect URI rejected&lt;br&gt;Backup completed; services restarted" style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#F0FAF5;strokeColor=#18794E;strokeWidth=2;fontFamily=Helvetica;fontSize=17;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="1465" y="705" width="670" height="305" as="geometry" />
+        </mxCell>
+        <mxCell id="limits" value="&lt;b&gt;ENTERPRISE HANDOFF BOUNDARIES&lt;/b&gt;&lt;br&gt;&lt;br&gt;The Mac stack is running and tested. OpenShift manifests are rendered/checked, not cluster-validated.&lt;br&gt;No HA claim: SQLite stores and single PostgreSQL require a supported shared-storage/database design before scaling.&lt;br&gt;Model-provider access is independent: enterprise inference URL, CA, model artifacts and egress must be supplied.&lt;br&gt;Replace demo passwords with an approved enterprise identity source, named MFA admins, audit retention and a rotation process.&lt;br&gt;Production release requires your platform, network, certificate, capacity, restore and security acceptance evidence." style="rounded=1;arcSize=10;html=1;whiteSpace=wrap;align=left;verticalAlign=top;spacing=18;fillColor=#FFF9ED;strokeColor=#A15C00;strokeWidth=2;fontFamily=Helvetica;fontSize=19;fontColor=#172B4D;" vertex="1" parent="1">
+          <mxGeometry x="65" y="1100" width="2070" height="275" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

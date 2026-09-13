@@ -1,0 +1,27 @@
+{
+  "apiVersion": "route.openshift.io/v1",
+  "kind": "Route",
+  "metadata": {
+    "name": "dex",
+    "namespace": "dda-sso",
+    "labels": {
+      "app.kubernetes.io/part-of": "dda-sso",
+      "app.kubernetes.io/name": "dex"
+    }
+  },
+  "spec": {
+    "host": "dex.apps.example.internal",
+    "to": {
+      "kind": "Service",
+      "name": "dex"
+    },
+    "port": {
+      "targetPort": "http"
+    },
+    "tls": {
+      "termination": "edge",
+      "insecureEdgeTerminationPolicy": "Redirect"
+    },
+    "wildcardPolicy": "None"
+  }
+}

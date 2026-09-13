@@ -1,0 +1,149 @@
+{
+  "apiVersion": "apps/v1",
+  "kind": "Deployment",
+  "metadata": {
+    "name": "keycloak-db",
+    "namespace": "dda-sso",
+    "labels": {
+      "app.kubernetes.io/part-of": "dda-sso",
+      "app.kubernetes.io/name": "keycloak-db"
+    }
+  },
+  "spec": {
+    "replicas": 1,
+    "strategy": {
+      "type": "Recreate"
+    },
+    "selector": {
+      "matchLabels": {
+        "app": "keycloak-db"
+      }
+    },
+    "template": {
+      "metadata": {
+        "labels": {
+          "app": "keycloak-db",
+          "app.kubernetes.io/part-of": "dda-sso"
+        }
+      },
+      "spec": {
+        "automountServiceAccountToken": false,
+        "securityContext": {
+          "runAsNonRoot": true,
+          "seccompProfile": {
+            "type": "RuntimeDefault"
+          }
+        },
+        "containers": [
+          {
+            "name": "keycloak-db",
+            "image": "registry.example.internal/dda/postgresql:16",
+            "imagePullPolicy": "IfNotPresent",
+            "ports": [
+              {
+                "containerPort": 5432
+              }
+            ],
+            "env": [
+              {
+                "name": "POSTGRESQL_USER",
+                "value": "keycloak"
+              },
+              {
+                "name": "POSTGRESQL_DATABASE",
+                "value": "keycloak"
+              },
+              {
+                "name": "POSTGRESQL_PASSWORD",
+                "valueFrom": {
+                  "secretKeyRef": {
+                    "name": "identity-secrets",
+                    "key": "POSTGRES_PASSWORD"
+                  }
+                }
+              },
+              {
+                "name": "POSTGRESQL_ADMIN_PASSWORD",
+                "valueFrom": {
+                  "secretKeyRef": {
+                    "name": "identity-secrets",
+                    "key": "POSTGRES_ADMIN_PASSWORD"
+                  }
+                }
+              }
+            ],
+            "volumeMounts": [
+              {
+                "name": "data",
+                "mountPath": "/var/lib/pgsql/data"
+              }
+            ],
+            "resources": {
+              "requests": {
+                "cpu": "100m",
+                "memory": "256Mi"
+              },
+              "limits": {
+                "memory": "1Gi"
+              }
+            },
+            "securityContext": {
+              "allowPrivilegeEscalation": false,
+              "capabilities": {
+                "drop": [
+                  "ALL"
+                ]
+              },
+              "runAsNonRoot": true
+            },
+            "readinessProbe": {
+              "exec": {
+                "command": [
+                  "/bin/sh",
+                  "-c",
+                  "pg_isready -U keycloak -d keycloak"
+                ]
+              },
+              "initialDelaySeconds": 10,
+              "periodSeconds": 10,
+              "timeoutSeconds": 5
+            },
+            "livenessProbe": {
+              "exec": {
+                "command": [
+                  "/bin/sh",
+                  "-c",
+                  "pg_isready -U keycloak -d keycloak"
+                ]
+              },
+              "initialDelaySeconds": 60,
+              "periodSeconds": 20,
+              "timeoutSeconds": 5
+            },
+            "startupProbe": {
+              "exec": {
+                "command": [
+                  "/bin/sh",
+                  "-c",
+                  "pg_isready -U keycloak -d keycloak"
+                ]
+              },
+              "failureThreshold": 60,
+              "periodSeconds": 10,
+              "timeoutSeconds": 5
+            }
+          }
+        ],
+        "volumes": [
+          {
+            "name": "data",
+            "persistentVolumeClaim": {
+              "claimName": "keycloak-db-data"
+            }
+          }
+        ],
+        "terminationGracePeriodSeconds": 60
+      }
+    }
+  }
+}

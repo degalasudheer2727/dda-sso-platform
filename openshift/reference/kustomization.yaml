@@ -1,0 +1,33 @@
+{
+  "apiVersion": "kustomize.config.k8s.io/v1beta1",
+  "kind": "Kustomization",
+  "resources": [
+    "platform/namespace.yaml",
+    "platform/identity-secrets.yaml",
+    "dex/dex-config.yaml",
+    "keycloak/keycloak-realm.yaml",
+    "dex/dex-data.yaml",
+    "keycloak-db/keycloak-db-data.yaml",
+    "open-webui/webui-data.yaml",
+    "dex/dex-deployment.yaml",
+    "dex/dex-service.yaml",
+    "dex/dex-route.yaml",
+    "keycloak-db/keycloak-db-deployment.yaml",
+    "keycloak-db/keycloak-db-service.yaml",
+    "keycloak/keycloak-deployment.yaml",
+    "keycloak/keycloak-service.yaml",
+    "keycloak/keycloak-route.yaml",
+    "open-webui/open-webui-deployment.yaml",
+    "open-webui/open-webui-service.yaml",
+    "open-webui/open-webui-route.yaml",
+    "platform/default-deny.yaml",
+    "dex/allow-router.yaml",
+    "keycloak/allow-router.yaml",
+    "open-webui/allow-router.yaml",
+    "keycloak-db/allow-keycloak.yaml",
+    "platform/allow-dns.yaml",
+    "keycloak/allow-db.yaml",
+    "keycloak/allow-route-https.yaml",
+    "open-webui/allow-route-https.yaml"
+  ]
+}

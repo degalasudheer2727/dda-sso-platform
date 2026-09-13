@@ -1,0 +1,16 @@
+{
+  "apiVersion": "v1",
+  "kind": "Secret",
+  "metadata": {
+    "name": "keycloak-realm",
+    "namespace": "dda-sso",
+    "labels": {
+      "app.kubernetes.io/part-of": "dda-sso",
+      "app.kubernetes.io/name": "keycloak"
+    }
+  },
+  "type": "Opaque",
+  "stringData": {
+    "dda-realm.json": "{\"realm\": \"dda\", \"displayName\": \"DDA Enterprise SSO\", \"enabled\": true, \"sslRequired\": \"external\", \"registrationAllowed\": false, \"resetPasswordAllowed\": false, \"loginWithEmailAllowed\": true, \"duplicateEmailsAllowed\": false, \"bruteForceProtected\": true, \"accessTokenLifespan\": 300, \"ssoSessionIdleTimeout\": 1800, \"ssoSessionMaxLifespan\": 28800, \"authenticationFlows\": [{\"alias\": \"dda-first-broker-login\", \"description\": \"Provision unique upstream identity without a second profile form\", \"providerId\": \"basic-flow\", \"topLevel\": true, \"builtIn\": false, \"authenticationExecutions\": [{\"authenticator\": \"idp-create-user-if-unique\", \"authenticatorFlow\": false, \"requirement\": \"REQUIRED\", \"priority\": 10, \"userSetupAllowed\": false}]}], \"identityProviders\": [{\"alias\": \"dex\", \"displayName\": \"DDA Test Identities\", \"providerId\": \"oidc\", \"enabled\": true, \"trustEmail\": true, \"storeToken\": false, \"firstBrokerLoginFlowAlias\": \"dda-first-broker-login\", \"config\": {\"clientId\": \"keycloak-dda\", \"clientSecret\": \"REPLACE_WITH_GENERATED_SECRET\", \"authorizationUrl\": \"https://dex.apps.example.internal/dex/auth\", \"tokenUrl\": \"https://dex.apps.example.internal/dex/token\", \"userInfoUrl\": \"https://dex.apps.example.internal/dex/userinfo\", \"jwksUrl\": \"https://dex.apps.example.internal/dex/keys\", \"issuer\": \"https://dex.apps.example.internal/dex\", \"validateSignature\": \"true\", \"useJwksUrl\": \"true\", \"defaultScope\": \"openid email profile\", \"syncMode\": \"FORCE\", \"pkceEnabled\": \"true\", \"pkceMethod\": \"S256\"}}], \"roles\": {\"realm\": [{\"name\": \"webui-user\"}, {\"name\": \"webui-admin\"}]}, \"defaultRoles\": [\"webui-user\"], \"clients\": [{\"clientId\": \"open-webui\", \"name\": \"DDA Open WebUI\", \"enabled\": true, \"protocol\": \"openid-connect\", \"publicClient\": false, \"secret\": \"REPLACE_WITH_GENERATED_SECRET\", \"standardFlowEnabled\": true, \"directAccessGrantsEnabled\": false, \"serviceAccountsEnabled\": false, \"redirectUris\": [\"https://webui.apps.example.internal/oauth/oidc/callback\"], \"webOrigins\": [\"https://webui.apps.example.internal\"], \"baseUrl\": \"https://webui.apps.example.internal\", \"rootUrl\": \"https://webui.apps.example.internal\", \"attributes\": {\"pkce.code.challenge.method\": \"S256\", \"post.logout.redirect.uris\": \"https://webui.apps.example.internal/*\"}, \"defaultClientScopes\": [\"web-origins\", \"acr\", \"roles\", \"profile\", \"email\"], \"optionalClientScopes\": [\"address\", \"phone\", \"offline_access\", \"microprofile-jwt\"], \"protocolMappers\": [{\"name\": \"webui-roles\", \"protocol\": \"openid-connect\", \"protocolMapper\": \"oidc-usermodel-realm-role-mapper\", \"config\": {\"claim.name\": \"roles\", \"jsonType.label\": \"String\", \"multivalued\": \"true\", \"id.token.claim\": \"true\", \"access.token.claim\": \"true\", \"userinfo.token.claim\": \"true\"}}]}]}"
+  }
+}

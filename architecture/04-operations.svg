@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="2200" height="1490" viewBox="0 0 2200 1490">
+<defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="context-stroke"/></marker></defs>
+<rect width="100%" height="100%" fill="#F4F7FC"/>
+<text x="55" y="72" font-family="Arial, Helvetica, sans-serif" font-size="32" fill="#172B4D" font-weight="700">04  |  Identity inventory and operational ownership</text>
+<text x="55" y="124" font-family="Arial, Helvetica, sans-serif" font-size="19" fill="#51647E" font-weight="400">SIX UPSTREAM IDENTITIES  •  five ordinary personas + one dedicated administrator  •  passwords intentionally excluded</text>
+<rect x="65" y="230" width="660" height="390" rx="12" fill="#FFFFFF" stroke="#1764C0" stroke-width="2"/>
+<text x="83" y="261" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#1764C0" font-weight="700">UPSTREAM DEX PERSONAS</text>
+<text x="83" y="293" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">testuser01@dda.test  •  Alex Morgan</text>
+<text x="83" y="317" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">testuser02@dda.test  •  Jamie Parker</text>
+<text x="83" y="341" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">testuser03@dda.test  •  Taylor Reed</text>
+<text x="83" y="365" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">testuser04@dda.test  •  Jordan Blake</text>
+<text x="83" y="389" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">testuser05@dda.test  •  Casey Brooks</text>
+<text x="83" y="413" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400"></text>
+<text x="83" y="437" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">All five: webui-user role → ordinary app user</text>
+<text x="83" y="461" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Stable IDs dda-test-01 … dda-test-05</text>
+<text x="83" y="485" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Profile name/email inherited from Dex</text>
+<rect x="785" y="230" width="1350" height="390" rx="12" fill="#FFFFFF" stroke="#7146B8" stroke-width="2"/>
+<text x="803" y="261" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#7146B8" font-weight="700">DEFAULT ADMINISTRATION</text>
+<text x="803" y="293" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Dex SSO identity: admin@dda.test / DDA Administrator</text>
+<text x="803" y="317" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Keycloak dda: explicit realm-management/realm-admin</text>
+<text x="803" y="341" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Open WebUI: explicit webui-admin claim</text>
+<text x="803" y="365" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Keycloak master: separate admin credential</text>
+<text x="803" y="389" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">PostgreSQL: postgres (internal administration only)</text>
+<text x="803" y="413" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400"></text>
+<text x="803" y="437" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Dex config: file/Git administration, no admin web UI</text>
+<text x="803" y="461" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Headroom: loopback utility, no built-in user accounts</text>
+<text x="803" y="485" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Existing Web UI administrators preserved</text>
+<rect x="65" y="705" width="660" height="305" rx="12" fill="#FFFFFF" stroke="#1764C0" stroke-width="2"/>
+<text x="83" y="736" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#1764C0" font-weight="700">REPRODUCIBLE SOURCE</text>
+<text x="83" y="768" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">compose.yaml + compose.identity.yaml</text>
+<text x="83" y="792" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">scripts/bootstrap.py / sync-keycloak.py</text>
+<text x="83" y="816" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Per-component README + config templates</text>
+<text x="83" y="840" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">scripts/render-openshift.py → 27 resources</text>
+<text x="83" y="864" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">images.lock.json + derived Dockerfiles</text>
+<text x="83" y="888" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Draw.io pages + SVG previews</text>
+<rect x="785" y="705" width="620" height="305" rx="12" fill="#FFF9ED" stroke="#A15C00" stroke-width="2"/>
+<text x="803" y="736" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#A15C00" font-weight="700">PRIVATE MATERIAL</text>
+<text x="803" y="768" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">.runtime/TEST-USERS.md</text>
+<text x="803" y="792" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400"> .runtime/ADMIN-ACCESS.md</text>
+<text x="803" y="816" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Generated secrets and bcrypt hashes</text>
+<text x="803" y="840" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Database dumps / app backups</text>
+<text x="803" y="864" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Rendered OpenShift Secret files</text>
+<text x="803" y="888" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400"></text>
+<text x="803" y="912" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Excluded from Git; protect/encrypt for transfer</text>
+<rect x="1465" y="705" width="670" height="305" rx="12" fill="#F0FAF5" stroke="#18794E" stroke-width="2"/>
+<text x="1483" y="736" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#18794E" font-weight="700">DEMONSTRATED / VERIFIED</text>
+<text x="1483" y="768" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Direct login for all five identities</text>
+<text x="1483" y="792" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Fresh administrator provisioned without profile form</text>
+<text x="1483" y="816" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Web UI Admin Panel + Keycloak realm console SSO</text>
+<text x="1483" y="840" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Five ordinary users remain non-admin</text>
+<text x="1483" y="864" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Invalid redirect URI rejected</text>
+<text x="1483" y="888" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Backup completed; services restarted</text>
+<rect x="65" y="1100" width="2070" height="275" rx="12" fill="#FFF9ED" stroke="#A15C00" stroke-width="2"/>
+<text x="83" y="1131" font-family="Arial, Helvetica, sans-serif" font-size="19" fill="#A15C00" font-weight="700">ENTERPRISE HANDOFF BOUNDARIES</text>
+<text x="83" y="1163" font-family="Arial, Helvetica, sans-serif" font-size="19" fill="#172B4D" font-weight="400">The Mac stack is running and tested. OpenShift manifests are rendered/checked, not cluster-validated.</text>
+<text x="83" y="1189" font-family="Arial, Helvetica, sans-serif" font-size="19" fill="#172B4D" font-weight="400">No HA claim: SQLite stores and single PostgreSQL require a supported shared-storage/database design before scaling.</text>
+<text x="83" y="1215" font-family="Arial, Helvetica, sans-serif" font-size="19" fill="#172B4D" font-weight="400">Model-provider access is independent: enterprise inference URL, CA, model artifacts and egress must be supplied.</text>
+<text x="83" y="1241" font-family="Arial, Helvetica, sans-serif" font-size="19" fill="#172B4D" font-weight="400">Replace demo passwords with an approved enterprise identity source, named MFA admins, audit retention and a rotation process.</text>
+<text x="83" y="1267" font-family="Arial, Helvetica, sans-serif" font-size="19" fill="#172B4D" font-weight="400">Production release requires your platform, network, certificate, capacity, restore and security acceptance evidence.</text>
+<text x="55" y="1465" font-family="Arial, Helvetica, sans-serif" font-size="14" fill="#51647E" font-weight="400">DDA • Deployed state and enterprise handoff • 14 September 2026 • No credentials embedded</text>
+</svg>

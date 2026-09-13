@@ -1,0 +1,33 @@
+{
+  "issuer": "${DEX_ISSUER}",
+  "storage": {
+    "type": "sqlite3",
+    "config": {
+      "file": "/var/dex/dex.db"
+    }
+  },
+  "web": {
+    "http": "0.0.0.0:5556"
+  },
+  "telemetry": {
+    "http": "0.0.0.0:5558"
+  },
+  "frontend": {
+    "issuer": "DDA Test Identity Provider"
+  },
+  "oauth2": {
+    "skipApprovalScreen": true
+  },
+  "enablePasswordDB": true,
+  "staticClients": [
+    {
+      "id": "keycloak-dda",
+      "name": "Keycloak DDA Broker",
+      "secret": "${DEX_CLIENT_SECRET}",
+      "redirectURIs": [
+        "${KEYCLOAK_URL}/realms/dda/broker/dex/endpoint"
+      ]
+    }
+  ],
+  "staticPasswords": []
+}

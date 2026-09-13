@@ -1,0 +1,27 @@
+{
+  "apiVersion": "route.openshift.io/v1",
+  "kind": "Route",
+  "metadata": {
+    "name": "keycloak",
+    "namespace": "dda-sso",
+    "labels": {
+      "app.kubernetes.io/part-of": "dda-sso",
+      "app.kubernetes.io/name": "keycloak"
+    }
+  },
+  "spec": {
+    "host": "keycloak.apps.example.internal",
+    "to": {
+      "kind": "Service",
+      "name": "keycloak"
+    },
+    "port": {
+      "targetPort": "http"
+    },
+    "tls": {
+      "termination": "edge",
+      "insecureEdgeTerminationPolicy": "Redirect"
+    },
+    "wildcardPolicy": "None"
+  }
+}

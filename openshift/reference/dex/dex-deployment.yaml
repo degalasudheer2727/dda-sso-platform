@@ -1,0 +1,129 @@
+{
+  "apiVersion": "apps/v1",
+  "kind": "Deployment",
+  "metadata": {
+    "name": "dex",
+    "namespace": "dda-sso",
+    "labels": {
+      "app.kubernetes.io/part-of": "dda-sso",
+      "app.kubernetes.io/name": "dex"
+    }
+  },
+  "spec": {
+    "replicas": 1,
+    "strategy": {
+      "type": "Recreate"
+    },
+    "selector": {
+      "matchLabels": {
+        "app": "dex"
+      }
+    },
+    "template": {
+      "metadata": {
+        "labels": {
+          "app": "dex",
+          "app.kubernetes.io/part-of": "dda-sso"
+        }
+      },
+      "spec": {
+        "automountServiceAccountToken": false,
+        "securityContext": {
+          "runAsNonRoot": true,
+          "seccompProfile": {
+            "type": "RuntimeDefault"
+          }
+        },
+        "containers": [
+          {
+            "name": "dex",
+            "image": "registry.example.internal/dda/dex:v2.45.1",
+            "imagePullPolicy": "IfNotPresent",
+            "ports": [
+              {
+                "containerPort": 5556
+              }
+            ],
+            "env": [],
+            "volumeMounts": [
+              {
+                "name": "data",
+                "mountPath": "/var/dex"
+              },
+              {
+                "name": "config",
+                "mountPath": "/etc/dex",
+                "readOnly": true
+              }
+            ],
+            "resources": {
+              "requests": {
+                "cpu": "100m",
+                "memory": "128Mi"
+              },
+              "limits": {
+                "memory": "1Gi"
+              }
+            },
+            "securityContext": {
+              "allowPrivilegeEscalation": false,
+              "capabilities": {
+                "drop": [
+                  "ALL"
+                ]
+              },
+              "runAsNonRoot": true
+            },
+            "readinessProbe": {
+              "httpGet": {
+                "path": "/healthz",
+                "port": 5558
+              },
+              "initialDelaySeconds": 10,
+              "periodSeconds": 10,
+              "timeoutSeconds": 5
+            },
+            "livenessProbe": {
+              "httpGet": {
+                "path": "/healthz",
+                "port": 5558
+              },
+              "initialDelaySeconds": 60,
+              "periodSeconds": 20,
+              "timeoutSeconds": 5
+            },
+            "startupProbe": {
+              "httpGet": {
+                "path": "/healthz",
+                "port": 5558
+              },
+              "failureThreshold": 60,
+              "periodSeconds": 10,
+              "timeoutSeconds": 5
+            },
+            "args": [
+              "dex",
+              "serve",
+              "/etc/dex/config.yaml"
+            ]
+          }
+        ],
+        "volumes": [
+          {
+            "name": "data",
+            "persistentVolumeClaim": {
+              "claimName": "dex-data"
+            }
+          },
+          {
+            "name": "config",
+            "secret": {
+              "secretName": "dex-config"
+            }
+          }
+        ],
+        "terminationGracePeriodSeconds": 60
+      }
+    }
+  }
+}
