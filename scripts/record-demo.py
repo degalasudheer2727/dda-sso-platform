@@ -22,9 +22,9 @@ run('record','start',str(root/'verification/user-sso-demo.webm'))
 try:
  time.sleep(2)
  s=run('snapshot','-i');run('click',ref(s,'Continue with DDA SSO'))
- s=run('snapshot','-i');assert 'Email Address' in s
+ s=run('snapshot','-i');assert 'Username or email' in s
  time.sleep(2)
- run('fill',ref(s,'Email Address'),u['email']);run('fill',ref(s,'textbox "Password"'),u['password'])
+ run('fill',ref(s,'Username or email'),u['email']);run('fill',ref(s,'textbox "Password"'),u['password'])
  run('click',ref(s,'button "Login"'));run('wait','--load','networkidle')
  assert run('get','url').strip()=='http://webui.localhost:3000/'
  time.sleep(3)

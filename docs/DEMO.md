@@ -5,7 +5,7 @@ Keep Docker Desktop running. Start/check the stack with `scripts/local.sh up -d`
 ## Ordinary user experience
 
 1. Open `http://webui.localhost:3000/auth` in a fresh browser session.
-2. Click **Continue with DDA SSO**. You should land directly on the **Dex** email/password form; no Keycloak provider-selection page appears.
+2. Click **Continue with DDA SSO**. You should land directly on the **Dex** username-or-email/password form; no Keycloak provider-selection page appears.
 3. Sign in with `testuser01@dda.test` (Alex Morgan) and its generated password.
 4. The browser returns to Open WebUI without a second profile form. The full name comes from Dex through Keycloak. The account has ordinary user access.
 5. Open `http://keycloak.localhost:8080/realms/dda/account/` in the same browser. The existing Keycloak session provides SSO.
@@ -32,3 +32,5 @@ A successful login demonstrates identity integration. Select/configure a model p
 ## Local recorded preview
 
 The completed recording is `verification/user-sso-demo.webm` on the Mac; authenticated media are intentionally excluded from GitHub. To record another local demo, run `npm install --prefix .runtime/browser-tools ffmpeg-static` once on a connected machine, then `python3 scripts/record-demo.py`. The synthetic password input remains masked in the recording.
+
+The five demo users can enter `testuser01`–`testuser05` or their `@dda.test` email addresses. The administrator can enter `admin` or `admin@dda.test`. Passwords are unchanged; see the private local credential sheet.

@@ -27,6 +27,11 @@ except urllib.error.HTTPError as e: assert e.code==400,e.code
 code="import sqlite3,json; c=sqlite3.connect('/app/backend/data/webui.db'); print(json.dumps(c.execute(\"select email,role from user where email like 'testuser%@dda.test'\").fetchall()))"
 rows=json.loads(subprocess.check_output(['docker','exec','open-webui','python','-c',code]))
 assert len(rows)==5 and all(role=='user' for _,role in rows)
+link_code="import sqlite3,json; c=sqlite3.connect('/app/backend/data/webui.db'); print(json.dumps(c.execute(\"select email,oauth from user where email like '%@dda.test'\").fetchall()))"
+app_links=dict(json.loads(subprocess.check_output(['docker','exec','open-webui','python','-c',link_code])))
+for fixture in s['users']+[s['admin']]:
+ kc=next(u for u in users if u.get('email')==fixture['email'])
+ assert json.loads(app_links[fixture['email']])['oidc']['sub']==kc['id'],'Stale WebUI SSO link'
 admins=[u for u in users if u.get('email')==s['admin']['email']]
 assert len(admins)==1
 mgmt=request('/admin/realms/dda/clients?clientId=realm-management',token=token)[0]

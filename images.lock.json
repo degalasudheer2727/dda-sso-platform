@@ -48,5 +48,12 @@
     "repoDigests": [],
     "architecture": "amd64",
     "os": "linux"
+  },
+  {
+    "reference": "dda/dex:v2.45.1",
+    "imageId": "sha256:99571ad73236a99ffc8869ee1343496cbfe16a8b7a77ffb7e3381f5f827a9499",
+    "repoDigests": [],
+    "architecture": "amd64",
+    "os": "linux"
   }
 ]

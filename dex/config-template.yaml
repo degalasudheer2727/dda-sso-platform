@@ -13,7 +13,8 @@
     "http": "0.0.0.0:5558"
   },
   "frontend": {
-    "issuer": "DDA Test Identity Provider"
+    "issuer": "DDA Test Identity Provider",
+    "dir": "/srv/dex/web"
   },
   "oauth2": {
     "skipApprovalScreen": true

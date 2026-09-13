@@ -49,7 +49,7 @@ def realm(dex_url, webui_url, s):
 def dex_config(issuer, kc_url, s):
     return {'issuer':issuer, 'storage':{'type':'sqlite3','config':{'file':'/var/dex/dex.db'}},
       'web':{'http':'0.0.0.0:5556'},'telemetry':{'http':'0.0.0.0:5558'},
-      'frontend':{'issuer':'DDA Test Identity Provider'},
+      'frontend':{'issuer':'DDA Test Identity Provider','dir':'/srv/dex/web'},
       'oauth2':{'skipApprovalScreen':True},'enablePasswordDB':True,
       'staticClients':[{'id':'keycloak-dda','name':'Keycloak DDA Broker',
          'secret':s['DEX_CLIENT_SECRET'],'redirectURIs':[kc_url+'/realms/dda/broker/dex/endpoint']}],
@@ -89,6 +89,7 @@ def main():
     write(RUNTIME/'identity.env','\n'.join(f'{k}={v}' for k,v in s.items() if isinstance(v,str))+'\n',True)
     rows=['# Local demo credentials — do not commit or reuse in production','',
           'Keycloak admin: `admin` / `'+s['KEYCLOAK_ADMIN_PASSWORD']+'`','',
+          'Dex login accepts the username or email below with the same password.','',
           '| Dex identity | Full name | Email | Password |','|---|---|---|---|']
     rows += [f"| {u['username']} | {u['name']} | {u['email']} | `{u['password']}` |" for u in s['users']]
     write(RUNTIME/'TEST-USERS.md','\n'.join(rows)+'\n',True)

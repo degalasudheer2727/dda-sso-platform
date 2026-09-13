@@ -1,6 +1,9 @@
 services:
   dex:
-    image: ghcr.io/dexidp/dex:v2.45.1
+    image: dda/dex:v2.45.1
+    build:
+      context: .
+      dockerfile: dex/Dockerfile
     container_name: dda-dex
     command: [dex, serve, /etc/dex/config.yaml]
     ports: ["127.0.0.1:5556:5556"]
@@ -50,6 +53,9 @@ services:
     restart: unless-stopped
   open-webui:
     environment:
+      OFFLINE_MODE: "true"
+      HF_HUB_OFFLINE: "1"
+      ENABLE_VERSION_UPDATE_CHECK: "false"
       WEBUI_URL: http://webui.localhost:3000
       WEBUI_ADMIN_EMAIL: webui-bootstrap@dda.test
       WEBUI_ADMIN_NAME: DDA Bootstrap Administrator

@@ -11,6 +11,6 @@
   },
   "type": "Opaque",
   "stringData": {
-    "config.yaml": "{\"issuer\": \"https://dex.apps.example.internal/dex\", \"storage\": {\"type\": \"sqlite3\", \"config\": {\"file\": \"/var/dex/dex.db\"}}, \"web\": {\"http\": \"0.0.0.0:5556\"}, \"telemetry\": {\"http\": \"0.0.0.0:5558\"}, \"frontend\": {\"issuer\": \"DDA Test Identity Provider\"}, \"oauth2\": {\"skipApprovalScreen\": true}, \"enablePasswordDB\": true, \"staticClients\": [{\"id\": \"keycloak-dda\", \"name\": \"Keycloak DDA Broker\", \"secret\": \"REPLACE_WITH_GENERATED_SECRET\", \"redirectURIs\": [\"https://keycloak.apps.example.internal/realms/dda/broker/dex/endpoint\"]}], \"staticPasswords\": []}"
+    "config.yaml": "{\"issuer\": \"https://dex.apps.example.internal/dex\", \"storage\": {\"type\": \"sqlite3\", \"config\": {\"file\": \"/var/dex/dex.db\"}}, \"web\": {\"http\": \"0.0.0.0:5556\"}, \"telemetry\": {\"http\": \"0.0.0.0:5558\"}, \"frontend\": {\"issuer\": \"DDA Test Identity Provider\", \"dir\": \"/srv/dex/web\"}, \"oauth2\": {\"skipApprovalScreen\": true}, \"enablePasswordDB\": true, \"staticClients\": [{\"id\": \"keycloak-dda\", \"name\": \"Keycloak DDA Broker\", \"secret\": \"REPLACE_WITH_GENERATED_SECRET\", \"redirectURIs\": [\"https://keycloak.apps.example.internal/realms/dda/broker/dex/endpoint\"]}], \"staticPasswords\": []}"
   }
 }

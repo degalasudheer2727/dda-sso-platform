@@ -18,13 +18,13 @@ def ref(snapshot,label):
  raise RuntimeError('Missing UI control: '+label+'\n'+snapshot)
 
 for u in users:
- session='dda-'+u['username']
+ session='dda-login-'+u['username']+('-username' if '--username' in sys.argv else '-email')
  try:
   browser(session,'open','http://webui.localhost:3000/auth')
   snap=browser(session,'snapshot','-i'); browser(session,'click',ref(snap,'Continue with DDA SSO'))
   snap=browser(session,'snapshot','-i')
-  assert 'Email Address' in snap, 'Expected direct Dex login, without Keycloak selection page: '+snap
-  browser(session,'fill',ref(snap,'Email Address'),u['email'])
+  assert 'Username or email' in snap, 'Expected direct Dex login, without Keycloak selection page: '+snap
+  browser(session,'fill',ref(snap,'Username or email'),u['username'] if '--username' in sys.argv else u['email'])
   browser(session,'fill',ref(snap,'textbox "Password"'),u['password'])
   browser(session,'click',ref(snap,'button "Login"'))
   snap=browser(session,'snapshot','-i')

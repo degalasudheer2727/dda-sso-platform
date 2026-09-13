@@ -12,6 +12,7 @@ validate:
 	python3 scripts/verify-manifests.py openshift/reference
 	kubectl kustomize openshift/reference > /dev/null
 images:
+	docker build -t dda/dex:v2.45.1 -f dex/Dockerfile .
 	docker build -t dda/keycloak:26.7.3 -f keycloak/Dockerfile .
 	docker build -t dda/open-webui:v0.11.3 -f open-webui/Dockerfile .
 export: images

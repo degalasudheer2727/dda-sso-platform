@@ -11,6 +11,7 @@ docker pull ghcr.io/dexidp/dex:v2.45.1
 docker pull quay.io/keycloak/keycloak:26.7.3
 docker pull quay.io/sclorg/postgresql-16-c9s@sha256:fbef891ec464ee8d20332c7f9a4a68decc0b6db8460e7e875df6f33cac5003dc
 docker pull ghcr.io/open-webui/open-webui:v0.11.3
+docker build -t dda/dex:v2.45.1 -f dex/Dockerfile .
 docker build -t dda/keycloak:26.7.3 -f keycloak/Dockerfile .
 docker build -t dda/open-webui:v0.11.3 -f open-webui/Dockerfile .
 scripts/export-images.sh

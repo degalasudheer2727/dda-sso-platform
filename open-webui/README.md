@@ -11,3 +11,5 @@ The Dockerfile derives a runtime that permits OpenShift arbitrary UIDs to write 
 Air-gap mode disables model downloads and version checks. Local embedding files present in the base image can be used, but speech/RAG models and model-provider services are separate dependencies. Mirror and license-check any additional model artifacts, configure your internal inference URL, CA trust and egress policy, and test chat/RAG independently. SSO success alone does not validate an LLM connection.
 
 Data lives at `/app/backend/data` on a 10 Gi PVC. SQLite requires one replica and `Recreate`; scaling needs a supported external database and shared storage design. Reference files: `openshift/reference/open-webui/`.
+
+Local identity Compose also enables `OFFLINE_MODE`, `HF_HUB_OFFLINE`, and disables version checks, matching the air-gap image behavior. This avoids external model downloads during startup; document embeddings require a model already present in the cache or an approved internal embedding service. An init process handles child processes during local container shutdown.
