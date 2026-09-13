@@ -1,0 +1,138 @@
+{
+  "capturedDate": "2026-09-14",
+  "environment": "Local Mac Docker lab",
+  "sourceRevision": "a8ce9ce",
+  "review": "Secret inputs masked before capture; OCR checked against known local credentials and token patterns; visual review of key configuration pages; user-list screenshot restricted to synthetic identities.",
+  "files": [
+    {
+      "file": "01-keycloak-realm.png",
+      "caption": "Keycloak dda realm general settings",
+      "sha256": "65da8bfd2ed7deaeea0dc58648149ddacff5086c8912ad05ceb007d76e9cb1ac"
+    },
+    {
+      "file": "02-keycloak-login-policy.png",
+      "caption": "Keycloak login policy",
+      "sha256": "ea00fa017e7e4b079ba2c15491a9029119159e1339bc372c9fa904e50eb36ee9"
+    },
+    {
+      "file": "03-keycloak-sessions.png",
+      "caption": "Keycloak session lifetimes",
+      "sha256": "f9d4673a11760a1ba152bc30c325734909825ce00d009aeb14c2e715ab11968f"
+    },
+    {
+      "file": "04-keycloak-tokens.png",
+      "caption": "Keycloak token settings",
+      "sha256": "9974315c6672aa0e8da78bfbf0fcab84fdaf95299940c18295343b67c2a45177"
+    },
+    {
+      "file": "04b-keycloak-access-token-lifetime.png",
+      "caption": "Keycloak access token lifespan",
+      "sha256": "279ee7e1578d48ba06f53d5f61fc85971a03db64888f04cd6f79c67e7485ef28"
+    },
+    {
+      "file": "05-keycloak-security.png",
+      "caption": "Keycloak security headers",
+      "sha256": "4a750282ac91e1fc3e8ca5f6610f8c61e687c6ab72cd0414fc6a3fe8305920e3"
+    },
+    {
+      "file": "06-keycloak-brute-force.png",
+      "caption": "Keycloak brute-force configuration",
+      "sha256": "dcf651c895b87790ba4da4b6376d043c6c1a20e62432ff135e0be4b51d795d83"
+    },
+    {
+      "file": "07-keycloak-dex-endpoints.png",
+      "caption": "Dex broker identity and endpoints",
+      "sha256": "5d7b6b1822cede792aa7f1304c38672e975c3b1a7f168670a8c6acc3f1c97bde"
+    },
+    {
+      "file": "08-keycloak-dex-pkce.png",
+      "caption": "Dex broker signature validation and PKCE",
+      "sha256": "3186ac7010b6e180169bb0077ddfbc5f5c7aa8ec75be5101af04e5f40f68e076"
+    },
+    {
+      "file": "09-keycloak-dex-provisioning.png",
+      "caption": "Dex broker advanced provisioning settings",
+      "sha256": "71f6f1f688e281f57a056c67eb2a3d15327edf5b84f9167e8e97170905be7cd1"
+    },
+    {
+      "file": "18-keycloak-first-broker-flow.png",
+      "caption": "Dedicated first broker login flow",
+      "sha256": "d59f8d497b47dc0b3fb835a0a22df596f0ee9a56bb043dd376a072cd81553e66"
+    },
+    {
+      "file": "10-keycloak-client-redirects.png",
+      "caption": "Dedicated WebUI client and redirect settings",
+      "sha256": "b054da2187017d30cb7d4d70e71b913a624168de39377bc40bf414f2cb14979d"
+    },
+    {
+      "file": "11-keycloak-client-pkce.png",
+      "caption": "Client authentication, authorization code flow and S256 PKCE",
+      "sha256": "a92e9babbddc3d4c212c5833be8bef64a62f36e6bfe6fa7eb8896fdbacde541f"
+    },
+    {
+      "file": "12-keycloak-client-logout.png",
+      "caption": "Client logout settings",
+      "sha256": "f4302278af01805573e4fc638ba8fab23561facd4640475d06937e585bbf77a0"
+    },
+    {
+      "file": "13-keycloak-role-claim.png",
+      "caption": "Keycloak roles claim mapper",
+      "sha256": "2f305e49a23dbc5f196065dd124446a33939dc1f037e8d1490d04eb205cf0078"
+    },
+    {
+      "file": "14-keycloak-groups.png",
+      "caption": "Keycloak authorization groups",
+      "sha256": "666746b5badf0d6381eabde7156419a1acb4fc1a6fc009face7a8eabf6ab9b75"
+    },
+    {
+      "file": "15-keycloak-user-group-roles.png",
+      "caption": "Standard group role mapping",
+      "sha256": "9a7cc1e7f78e1a370f50186a662083d2e29226f2fb5d7eb0f5513383d5d8eb2e"
+    },
+    {
+      "file": "16-keycloak-admin-group-roles.png",
+      "caption": "Administrator group role mapping",
+      "sha256": "9d9852dc1da7bae0ee65803ff06f00a7d0eaa9cc0332c8ea7bffb799413c856c"
+    },
+    {
+      "file": "17-keycloak-admin-group-members.png",
+      "caption": "Administrator group membership example",
+      "sha256": "cba0e8acce55af543e3153f38c4713fa68abd5ef6dbe6eee4e27e01b4316ed3b"
+    },
+    {
+      "file": "20-webui-authentication.png",
+      "caption": "Open WebUI authentication and user-access settings",
+      "sha256": "3fa779f6f1b7333a562baf89d0b64c26c632f0905440a57c07b1bdb92265f26c"
+    },
+    {
+      "file": "21-webui-oidc.png",
+      "caption": "Open WebUI OIDC settings with client secret hidden",
+      "sha256": "88ed95022355dffab4fcf943b9d4373953c7e37d9a293091c9cbcddd80225cb7"
+    },
+    {
+      "file": "22-webui-role-mapping.png",
+      "caption": "Open WebUI allowed roles and administrator mapping",
+      "sha256": "15f4f92598435a3fa7196efb0208301f63188bcf67a3230886c19b7a0e63db42"
+    },
+    {
+      "file": "26-webui-sso-users.png",
+      "caption": "Synthetic SSO accounts visible in WebUI",
+      "sha256": "cdeaa154319d2608de4642198ece10028f0834ec73a98a28412b3a222c0d9561"
+    },
+    {
+      "file": "23-webui-connections.png",
+      "caption": "Open WebUI connection settings",
+      "sha256": "02ac5749d595e50b7adab14515d34845cef002b0544cf907a4d8268a5a26298c"
+    },
+    {
+      "file": "24-webui-sign-in.png",
+      "caption": "Open WebUI entry point",
+      "sha256": "51e788a7d2f1df4178a9ad72dec04cf39fa15e3c6c864a03eda672bb3b09051d"
+    },
+    {
+      "file": "25-dex-username-login.png",
+      "caption": "Dex username-or-email form",
+      "sha256": "b10157876f38db667fbdb130314613c89ab9ded8fc06b79faf1216fb6a2eebc0"
+    }
+  ]
+}

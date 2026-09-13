@@ -28,3 +28,7 @@ Keycloak includes inherited roles in the signed `roles` claim; Open WebUI's OAut
 Existing WebUI sessions are not instantly revoked by changing Keycloak membership. For urgent removal, also revoke/disable the user's WebUI sessions/access and Keycloak sessions using the approved administrative process. Do not promise immediate revocation from a token claim change alone.
 
 The bootstrap realm creates both groups; demo imports assign the five fixtures to `openweb-users` and the dedicated administrator to `openwebui-admins`. Production imports leave groups empty until approved enterprise identities are assigned. `sync-keycloak.py` migrates existing demo direct grants once and preserves later group membership decisions. Run `verify-group-inheritance.py` only in the local demo: it temporarily promotes testuser05, tests demotion and denial, then restores membership.
+
+## Illustrated configuration runbook
+
+See the [configuration guide](../docs/CONFIGURATION-GUIDE.md#3-keycloak-realm-general-and-login-policy) for live screenshots, exact settings, source ownership and operating procedures. An [offline HTML edition](../docs/CONFIGURATION-GUIDE.html) is included.

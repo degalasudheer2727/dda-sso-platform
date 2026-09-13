@@ -78,3 +78,7 @@ For enterprise acceptance and remaining cluster-dependent gates, see [production
 [Four-page Draw.io document](architecture/dda-sso-architecture.drawio) and [SVG previews](architecture/README.md) cover the deployed Mac stack, detailed SSO sequence, air-gapped OpenShift reference, and identity/operations inventory.
 
 Manage group membership in Keycloak **dda → Users → user → Groups**. Permissions are inherited on the next SSO login; existing sessions need separate revocation for urgent removal. See [Keycloak authorization](keycloak/README.md#group-based-open-webui-authorization).
+
+## Illustrated administration guide
+
+Read the [screenshot-backed configuration guide](docs/CONFIGURATION-GUIDE.md), or open the [offline HTML edition](docs/CONFIGURATION-GUIDE.html). It covers Keycloak, Open WebUI, Dex, group inheritance, session behavior, troubleshooting and OpenShift handoff. Exact non-secret runtime values are in [local-effective-config.json](docs/configuration/local-effective-config.json).

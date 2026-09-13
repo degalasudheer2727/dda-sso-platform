@@ -21,3 +21,7 @@ This is a browser form adapter for the fixed demo identities, not native usernam
 Template adapted from [Dex v2.45.1 password.html](https://github.com/dexidp/dex/blob/v2.45.1/web/templates/password.html), under Dex's Apache-2.0 license.
 
 Verify both modes: `python3 scripts/onboard-test-users.py --username`, then the same command without `--username`. Add `--admin` to verify the administrator.
+
+## Illustrated configuration runbook
+
+See the [configuration guide](../docs/CONFIGURATION-GUIDE.md#8-dex-login-and-the-five-test-identities) for live screenshots, exact settings, source ownership and operating procedures. An [offline HTML edition](../docs/CONFIGURATION-GUIDE.html) is included.

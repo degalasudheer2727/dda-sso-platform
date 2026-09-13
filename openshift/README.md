@@ -28,3 +28,7 @@ NetworkPolicy defaults to deny. DNS to OpenShift DNS, ingress-router traffic, an
 No fixed UID, privileged container, hostPath, or anyuid SCC is requested. The cluster supplies allowed UID/fsGroup values. Route, SCC admission, CA chain, registry authentication, storage provisioning, and NetworkPolicy behavior still require validation on the actual enterprise cluster. These manifests do not claim compatibility certification for an unspecified OpenShift version.
 
 Generated secrets persist across rerenders in `rendered/deployment-secrets.json`. Use a separate output directory per environment. Back it up securely; credential rotation requires matching database/client updates. For GitOps, replace plaintext rendered Secrets with your approved sealed/encrypted secret process.
+
+## Illustrated configuration runbook
+
+See the [configuration guide](../docs/CONFIGURATION-GUIDE.md#9-reproduce-locally-and-carry-changes-to-openshift) for live screenshots, exact settings, source ownership and operating procedures. An [offline HTML edition](../docs/CONFIGURATION-GUIDE.html) is included.
