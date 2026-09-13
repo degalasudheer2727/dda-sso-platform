@@ -48,13 +48,30 @@ for name in ['webui-user','webui-admin']:
  except urllib.error.HTTPError as e:
   if e.code!=404: raise
   call(b+'/roles','POST',{'name':name})
+# Authorization comes from groups, not realm-wide defaults or fixture direct roles.
+groups={g['name']:g for g in call(b+'/groups')}
+for spec in r['groups']:
+ if spec['name'] not in groups:
+  call(b+'/groups','POST',{'name':spec['name']})
+  groups={g['name']:g for g in call(b+'/groups')}
+ call(b+'/groups/'+groups[spec['name']]['id']+'/role-mappings/realm','POST',[call(b+'/roles/'+name) for name in spec['realmRoles']])
 for fixture in s['users']+([s['admin']] if s.get('admin') else []):
  found=call(b+'/users?email='+urllib.parse.quote(fixture['email'])+'&exact=true')
  if found:
-  role=call(b+'/roles/'+('webui-admin' if fixture.get('username')=='admin' else 'webui-user'))
-  call(b+'/users/'+found[0]['id']+'/role-mappings/realm','POST',[role])
+  uid=found[0]['id']
+  group='openwebui-admins' if fixture.get('username')=='admin' else 'openweb-users'
+  # Seed a group only on migration. Preserve administrators' later membership decisions.
+  memberships=call(b+'/users/'+uid+'/groups')
+  direct=call(b+'/users/'+uid+'/role-mappings/realm')
+  legacy=[role for role in direct if role['name'] in ['webui-user','webui-admin']]
+  if legacy or not fixture.get('group_migrated'):
+   call(b+'/users/'+uid+'/groups/'+groups[group]['id'],'PUT')
+   fixture['group_migrated']=True
+  if legacy: call(b+'/users/'+uid+'/role-mappings/realm','DELETE',legacy)
 default=call(b)['defaultRole']['name']
-call(b+'/roles/'+default+'/composites','POST',[call(b+'/roles/webui-user')])
+call(b+'/roles/'+default+'/composites','DELETE',[call(b+'/roles/webui-user'),call(b+'/roles/webui-admin')])
+(root/'.runtime/secrets.json').write_text(json.dumps(s,indent=2)+'\n')
+print('Reconciled openweb-users and openwebui-admins group role inheritance.')
 client=call(b+'/clients?clientId=open-webui')[0]
 mapper=r['clients'][0]['protocolMappers'][0]
 existing=call(b+'/clients/'+client['id']+'/protocol-mappers/models')

@@ -29,6 +29,9 @@ assert realm['identityProviders'][0]['config']['syncMode']=='FORCE'
 flow=realm['authenticationFlows'][0]
 assert flow['authenticationExecutions'][0]['authenticator']=='idp-create-user-if-unique'
 assert all(e.get('authenticator')!='idp-review-profile' for e in flow['authenticationExecutions'])
+groups={g['name']:set(g['realmRoles']) for g in realm['groups']}
+assert groups=={'openweb-users':{'webui-user'},'openwebui-admins':{'webui-user','webui-admin'}}
+assert not set(realm.get('defaultRoles',[])) & {'webui-user','webui-admin'}
 webui=next(o for o in bykind('Deployment') if o['metadata']['name']=='open-webui')
 values={e['name']:e.get('value') for e in webui['spec']['template']['spec']['containers'][0]['env']}
 assert json.loads(values['OAUTH_AUTHORIZE_PARAMS'])=={'kc_idp_hint':'dex'}

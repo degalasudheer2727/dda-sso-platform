@@ -64,8 +64,8 @@
 <text x="83" y="724" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">No password/direct grant on app client</text>
 <rect x="65" y="865" width="1000" height="235" rx="12" fill="#F0FAF5" stroke="#18794E" stroke-width="2"/>
 <text x="83" y="896" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#18794E" font-weight="700">EXPLICIT AUTHORIZATION</text>
-<text x="83" y="928" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Five personas → webui-user → user</text>
-<text x="83" y="952" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Dedicated admin → webui-admin → admin</text>
+<text x="83" y="928" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">openweb-users → webui-user → user</text>
+<text x="83" y="952" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">openwebui-admins → webui-admin → admin</text>
 <text x="83" y="976" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Admin also: realm-management/realm-admin</text>
 <text x="83" y="1000" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Master admin remains separate</text>
 <text x="83" y="1024" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">No email-based automatic account merge</text>

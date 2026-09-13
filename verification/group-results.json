@@ -1,0 +1,11 @@
+{
+  "groups": [
+    "openweb-users",
+    "openwebui-admins"
+  ],
+  "promotion": "passed",
+  "demotion": "passed",
+  "unassigned_login": "denied",
+  "original_membership": "restored",
+  "applied_at": "SSO login"
+}

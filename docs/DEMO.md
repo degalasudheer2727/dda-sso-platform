@@ -34,3 +34,7 @@ A successful login demonstrates identity integration. Select/configure a model p
 The completed recording is `verification/user-sso-demo.webm` on the Mac; authenticated media are intentionally excluded from GitHub. To record another local demo, run `npm install --prefix .runtime/browser-tools ffmpeg-static` once on a connected machine, then `python3 scripts/record-demo.py`. The synthetic password input remains masked in the recording.
 
 The five demo users can enter `testuser01`–`testuser05` or their `@dda.test` email addresses. The administrator can enter `admin` or `admin@dda.test`. Passwords are unchanged; see the private local credential sheet.
+
+## Demonstrate group-based permissions
+
+Show `dda → Groups` in Keycloak: the five personas belong to `openweb-users`, and the dedicated SSO administrator belongs to `openwebui-admins`. Add a persona to `openwebui-admins`, sign out and back into WebUI, and show the Admin Panel. Remove that membership while keeping `openweb-users`, sign in again, and show normal user access. Restore the persona's original membership after the demo. The automated local test is `python3 scripts/verify-group-inheritance.py`.

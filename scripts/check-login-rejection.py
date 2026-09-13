@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """Verify the demo username adapter does not bypass password validation."""
-import subprocess, re
+import subprocess, re, os
 def browser(session,*args):
- r=subprocess.run(['npx','--yes','agent-browser','--session',session,*args],capture_output=True,text=True,timeout=60)
+ r=subprocess.run(([os.environ['AGENT_BROWSER_BIN']] if os.environ.get('AGENT_BROWSER_BIN') else ['npx','--yes','agent-browser'])+['--session',session,*args],capture_output=True,text=True,timeout=60)
  if r.returncode: raise RuntimeError(r.stderr.strip() or r.stdout.strip())
  return r.stdout
 

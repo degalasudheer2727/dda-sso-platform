@@ -38,7 +38,7 @@ scripts/local.sh ps
 
 Bootstrap generates secrets only once and pre-provisions the dedicated federated administrator in a fresh Keycloak realm. Fresh Web UI databases also receive a separate break-glass administrator before any SSO user can sign in. Running it again preserves credentials. **Use `scripts/local.sh` for this identity stack**, so both Compose files and its private environment are loaded. Running plain `docker compose up` only loads the earlier Web UI/Headroom configuration.
 
-Keycloak imports the realm on the first database boot. An existing realm is not overwritten on restart. See `keycloak/README.md` for change management. Existing Open WebUI accounts/data are retained; only the explicitly generated five identities are approved by `scripts/approve-test-users.py` after first login.
+Keycloak imports the realm on the first database boot. An existing realm is not overwritten on restart. See `keycloak/README.md` for change management. Existing Open WebUI accounts/data are retained; the five demo identities inherit ordinary access from the Keycloak `openweb-users` group; `openwebui-admins` grants WebUI administrator access.
 
 ## Repository layout
 
@@ -65,7 +65,7 @@ The manifests target native OpenShift APIs and restricted SCC behavior, with HTT
 
 Dex profiles are Alex Morgan, Jamie Parker, Taylor Reed, Jordan Blake and Casey Brooks (`testuser01`–`testuser05`, with matching `@dda.test` email addresses). Open WebUI sends `kc_idp_hint=dex`, so the Keycloak selection page is skipped. Keycloak's `dda-first-broker-login` flow creates only unique upstream identities; matching existing accounts require explicit administrator resolution, never silent linking. The broker imports and refreshes names/emails from Dex.
 
-For a fresh bootstrap run `python3 scripts/onboard-test-users.py` to exercise all five browser logins, then `python3 scripts/approve-test-users.py` if the existing app policy leaves them pending. `python3 scripts/sync-keycloak.py` reconciles the local broker flow after a source change; realm startup import alone does not update an existing database.
+For a fresh bootstrap run `python3 scripts/onboard-test-users.py` to exercise all five browser logins, and `python3 scripts/verify-group-inheritance.py` to demonstrate group-based promotion, demotion and denial. `python3 scripts/sync-keycloak.py` reconciles the local broker flow after a source change; realm startup import alone does not update an existing database.
 
 ## Administration and demo
 
@@ -76,3 +76,5 @@ For enterprise acceptance and remaining cluster-dependent gates, see [production
 ## Editable architecture
 
 [Four-page Draw.io document](architecture/dda-sso-architecture.drawio) and [SVG previews](architecture/README.md) cover the deployed Mac stack, detailed SSO sequence, air-gapped OpenShift reference, and identity/operations inventory.
+
+Manage group membership in Keycloak **dda → Users → user → Groups**. Permissions are inherited on the next SSO login; existing sessions need separate revocation for urgent removal. See [Keycloak authorization](keycloak/README.md#group-based-open-webui-authorization).

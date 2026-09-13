@@ -65,9 +65,6 @@
       }
     ]
   },
-  "defaultRoles": [
-    "webui-user"
-  ],
   "clients": [
     {
       "clientId": "open-webui",
@@ -118,6 +115,21 @@
             "userinfo.token.claim": "true"
           }
         }
+      ]
+    }
+  ],
+  "groups": [
+    {
+      "name": "openweb-users",
+      "realmRoles": [
+        "webui-user"
+      ]
+    },
+    {
+      "name": "openwebui-admins",
+      "realmRoles": [
+        "webui-user",
+        "webui-admin"
       ]
     }
   ]

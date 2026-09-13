@@ -18,7 +18,7 @@
 <text x="803" y="261" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#7146B8" font-weight="700">DEFAULT ADMINISTRATION</text>
 <text x="803" y="293" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Dex SSO identity: admin@dda.test / DDA Administrator</text>
 <text x="803" y="317" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Keycloak dda: explicit realm-management/realm-admin</text>
-<text x="803" y="341" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Open WebUI: explicit webui-admin claim</text>
+<text x="803" y="341" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Open WebUI: openwebui-admins → webui-admin</text>
 <text x="803" y="365" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Keycloak master: separate admin credential</text>
 <text x="803" y="389" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">PostgreSQL: postgres (internal administration only)</text>
 <text x="803" y="413" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400"></text>

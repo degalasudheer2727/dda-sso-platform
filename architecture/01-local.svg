@@ -13,7 +13,7 @@
 <text x="83" y="276" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#1764C0" font-weight="700">User and administrator browser</text>
 <text x="83" y="308" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Web UI: webui.localhost:3000</text>
 <text x="83" y="332" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Click “Continue with DDA SSO”</text>
-<text x="83" y="356" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Direct Dex email/password form</text>
+<text x="83" y="356" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Dex username-or-email login</text>
 <text x="83" y="380" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">No second profile form</text>
 <text x="83" y="404" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">Existing Keycloak session enables</text>
 <text x="83" y="428" font-family="Arial, Helvetica, sans-serif" font-size="17" fill="#172B4D" font-weight="400">SSO</text>

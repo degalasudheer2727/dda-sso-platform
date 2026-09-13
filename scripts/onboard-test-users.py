@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
 """Browser-driven login of generated users. Does not print passwords or tokens."""
-import json, re, subprocess, time, sys
+import json, re, subprocess, time, sys, os, urllib.parse
 from pathlib import Path
 root=Path(__file__).resolve().parents[1]
 fixture=json.loads((root/'.runtime/secrets.json').read_text())
 users=[fixture['admin']] if '--admin' in sys.argv else fixture['users']
+if '--user' in sys.argv:
+ users=[u for u in users if u['username']==sys.argv[sys.argv.index('--user')+1]]
+ assert users,'Unknown fixture username'
 def browser(session,*args):
- r=subprocess.run(['npx','--yes','agent-browser','--session',session,*args],capture_output=True,text=True,timeout=60)
+ r=subprocess.run(([os.environ['AGENT_BROWSER_BIN']] if os.environ.get('AGENT_BROWSER_BIN') else ['npx','--yes','agent-browser'])+['--session',session,*args],capture_output=True,text=True,timeout=60)
  if r.returncode: raise RuntimeError(r.stderr.strip() or r.stdout.strip())
  return r.stdout
 
@@ -31,6 +34,10 @@ for u in users:
   assert 'Update Account Information' not in snap, 'Unexpected second profile form'
   browser(session,'wait','--load','networkidle')
   url=browser(session,'get','url').strip()
+  if '--expect-denied' in sys.argv:
+   assert '/auth?error=' in url and 'permission' in urllib.parse.unquote_plus(url).lower(), 'Expected access denial: '+url
+   print(u['username']+': unassigned group login denied',flush=True)
+   continue
   if url!='http://webui.localhost:3000/': raise RuntimeError('Unexpected final URL: '+url)
   print(u['username']+': brokered browser login PASS',flush=True)
  finally:
